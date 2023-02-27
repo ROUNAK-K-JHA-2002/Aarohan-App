@@ -1,0 +1,184 @@
+{
+  "project_info": {
+    "project_number": "550997604028",
+    "firebase_url": "https://aarohan-76222.firebaseio.com",
+    "project_id": "aarohan-76222",
+    "storage_bucket": "aarohan-76222.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550997604028:android:192f2670958d919559c2b9",
+        "android_client_info": {
+          "package_name": "com.app.aarohan.aarohanapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550997604028-297d0dbi2sd81hrpfo3tl6bsld58es24.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "1f7594f3f1bf2d56756b5713542b70b33bb1922c"
+          }
+        },
+        {
+          "client_id": "550997604028-5tqqh821aobr83tigrcfnjgrfj95fn5t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "3022fd0ed5d2f63cb389bbaba4fa7006960dce52"
+          }
+        },
+        {
+          "client_id": "550997604028-7fddu42qco7lctggbiqrfj4pkahet58b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "1f6bbe8d595a2b430a59a442610daf240059d25d"
+          }
+        },
+        {
+          "client_id": "550997604028-85gbgjd5gltebkblsaouklrc5skndkir.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "975f2b1911820c2034dba56fd683b364b7fb16be"
+          }
+        },
+        {
+          "client_id": "550997604028-86tv1ptk82eirk0f5girgg8m5pivl3l4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "37143c560e1898c6ad0dc8184ab1a320f65e3698"
+          }
+        },
+        {
+          "client_id": "550997604028-93nnrgc5i979klnc1bigvrgo2e54jv1a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "aa0393c04df2204a303a5ed8be1d431cdaf3e726"
+          }
+        },
+        {
+          "client_id": "550997604028-9es3p8m2studljs2p0hv4ugisiiqlaim.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "2177fee0bdd718c13acab417b162862aec677c66"
+          }
+        },
+        {
+          "client_id": "550997604028-fphp2pfrrkgp5u39nt6hkt2qm7b8mi09.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "57418194dc27016c11e1761915a77c1ad47969d0"
+          }
+        },
+        {
+          "client_id": "550997604028-hkhq39iihfdo3ve490n1te92ui56dpts.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "f7e65f834c9f041dbbfe2b4e66e716ef2dd6ed5c"
+          }
+        },
+        {
+          "client_id": "550997604028-hsj1u08aa40ebq30ntq8l4n4254s0ari.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "ce82b20e6fc52d95c0eaaaba5da12a7e1d8dddb1"
+          }
+        },
+        {
+          "client_id": "550997604028-jhgi6iie7usv9vedmaapd1ctbr0cntf4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "0b5f8e0837dac1d092ffa15907987a498a4efd52"
+          }
+        },
+        {
+          "client_id": "550997604028-kb4illhq48alupgn7j3d7g30uk58bldi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "7f5e48a9197e78b49023ce7f01cfd073e7b3ef4d"
+          }
+        },
+        {
+          "client_id": "550997604028-khamp8441846qui9f2ajivgpj80bd50f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "185e86681b9a30d8ac9a772f1d29589a48982d4a"
+          }
+        },
+        {
+          "client_id": "550997604028-lq55vutiv24a03l1fqbhev6uknsh0bah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "ec21f0c652ee4a960f755ea2a77470f442fbebb5"
+          }
+        },
+        {
+          "client_id": "550997604028-noqftfi41lcddffcob102846gh2hntc9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "782d9fa889b816462c88cf9e3976287dc124188b"
+          }
+        },
+        {
+          "client_id": "550997604028-qvud6lqdsnne72a8geld92ij5qema3bc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "daef85472508446684a71abdbe89e60f649299fb"
+          }
+        },
+        {
+          "client_id": "550997604028-ud5u90aihe732mqosli28v201dr3a9d6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "dfa372f8a5e10f0dd063594e4b3c8787c870b143"
+          }
+        },
+        {
+          "client_id": "550997604028-vfh6rg8lo02df651k4cvib283sor53hv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan.aarohanapp",
+            "certificate_hash": "289525dd5e809d6e095b3794d85b9c6647144c30"
+          }
+        },
+        {
+          "client_id": "550997604028-enuccq868jbq14kmnidjgeaf11ti8gt5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWsWXAYXZx6IXI5axkk8wf1E1ck9O_FbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550997604028-enuccq868jbq14kmnidjgeaf11ti8gt5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
