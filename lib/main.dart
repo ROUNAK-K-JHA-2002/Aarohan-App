@@ -52,7 +52,7 @@ Future main() async {
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Dashboard(),
+      home: HomePage(),
       routes: {
         '/eventpage': (context) => Event_Detail(),
         '/timeline': (context) => Timeline(),

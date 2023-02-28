@@ -6,14 +6,11 @@ import 'package:aarohan_app/models/user.dart';
 import 'package:aarohan_app/resources/eurekoin.dart';
 import 'dart:convert';
 
-class AuthService{
+class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final FirebaseDatabase database = FirebaseDatabase.instance;
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  static final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: ['email']
-  );
-
+  static final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
 
   // Future<Users> userStream()async {
   //   CollectionReference<Map<String, dynamic>> ref =
@@ -23,59 +20,60 @@ class AuthService{
   // }
 
   // stores the user details to Firestore
-  Future storeUser(User user) async{
+  Future storeUser(User user) async {
     DocumentSnapshot doc =
-    await _firestore.collection("Users").doc(user.uid).get();
+        await _firestore.collection("Users").doc(user.uid).get();
 
-    Map<dynamic,dynamic> user_data = {
+    Map<dynamic, dynamic> user_data = {
       "name": user.displayName,
       "email": user.email,
       "photoURL": user.photoURL,
-      "id":user.uid,
-      "calendar":doc['calendar']
-
+      "id": user.uid,
+      "calendar": doc['calendar']
     };
-    Users.us =  Users.fromJson(user_data);
+    Users.us = Users.fromJson(user_data);
   }
 
-  Future gSignIn() async{
+  Future gSignIn() async {
     try {
       final GoogleSignInAccount googleSignInAccount =
-      await _googleSignIn.signIn();
+          await _googleSignIn.signIn();
 
       final GoogleSignInAuthentication googleSignInAuthentication =
-      await googleSignInAccount.authentication;
+          await googleSignInAccount.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken,
       );
       final UserCredential authResult =
-      await _auth.signInWithCredential(credential);
+          await _auth.signInWithCredential(credential);
 
       final User user = authResult.user;
 
-      Map<String,dynamic> user_data = {
+      Map<String, dynamic> user_data = {
         "name": user.displayName,
         "email": user.email,
         "photoURL": user.photoURL,
-        "id":user.uid,
-        "calendar":[]
+        "id": user.uid,
+        "calendar": []
       };
 
       // assert(!user.isAnonymous);
       // assert(await user.getIdToken() != null);
-      Users.us =  Users.fromJson(user_data);
+      Users.us = Users.fromJson(user_data);
       final User currentUser = _auth.currentUser;
       DocumentSnapshot doc =
-      await _firestore.collection("Users").doc(user.uid).get();
+          await _firestore.collection("Users").doc(user.uid).get();
       if (!doc.exists) {
-        await _firestore.collection("Users").doc(user.uid).set(user_data, SetOptions(merge: true));
+        await _firestore
+            .collection("Users")
+            .doc(user.uid)
+            .set(user_data, SetOptions(merge: true));
 
-      // EUREKOIN BULLSHIT
+        // EUREKOIN BULLSHIT
         /////////////////////////////
         await Eurekoin.registerEurekoinUser(" ");
-
       }
 
       print('Google Sign In succeeded');
@@ -86,24 +84,21 @@ class AuthService{
       // assert(user.displayName != null);
       // assert(user.photoURL != null);
 
-
-
     } on FirebaseAuthException catch (e) {
-
-       print(e.message);
+      print(e.message);
     }
   }
 
-  Future gSignOut() async{
+  Future gSignOut() async {
     await _googleSignIn.signOut();
     await _auth.signOut();
     print("User Sign Out");
   }
 
-  Future getUser() async{
+  Future getUser() async {
     final User user = _auth.currentUser;
-    
+
     // in the login page, based on the return value, the animation to be shown is decided.
-     return user;
+    return user;
   }
 }

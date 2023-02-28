@@ -18,96 +18,102 @@ class _LoginState extends State<Login> {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return SafeArea(
-          child: Stack(
-            children: [
-              Scaffold(
-                body: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/login-gif.gif"),
-                        fit: BoxFit.fill),
-                  ),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Container(
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height * 0.2,
+            child: Stack(
+          children: [
+            Scaffold(
+              body: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/login-bg.jpg"),
+                      colorFilter: new ColorFilter.mode(
+                          Color.fromARGB(61, 48, 17, 6), BlendMode.srcOver),
+                      fit: BoxFit.fill),
+                ),
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                    ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(17.0),
+                      child: CircleAvatar(
+                        radius: 100,
+                        backgroundImage: AssetImage(
+                          'assets/aarohan-logo.png',
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: CircleAvatar(
-                            radius: 70,
-                            backgroundImage: AssetImage(
-                              'assets/aarohan-logo 1.png',
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text('Aarohan',
-                              style: TextStyle(
-                                  fontFamily: 'Mons',
-                                  fontSize: 60,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text('By Team Aavishkar',
-                              style: TextStyle(
-                                  fontFamily: 'Mons',
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400)),
-                        ),
-                        GestureDetector(
-                          onTap: () async {
-                            AuthService authService = AuthService();
-                            authService.gSignIn();
-
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                            child: Container(
-                              width: 70.w,
-                              height: 7.h,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.white, width: 1),
-                                    color: fromCssColor('#ff0000').withOpacity(0.4),
-                                    borderRadius: BorderRadius.circular(10.sp)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 8, 0, 8),
-                                      child: Image(
-                                          image: AssetImage('assets/google.png')),
-                                    ),
-                                    Text('Sign In With Google', style: TextStyle(
+                      ),
+                    ),
+                    SizedBox(
+                      height: 4.h,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text('Aarohan',
+                          style: TextStyle(
+                              fontFamily: 'Mons',
+                              fontSize: 60,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text('By Team Aavishkar',
+                          style: TextStyle(
+                              fontFamily: 'Mons',
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400)),
+                    ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        AuthService authService = AuthService();
+                        authService.gSignIn();
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+                        child: Container(
+                          width: 65.w,
+                          height: 7.h,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Color.fromRGBO(254, 110, 101, 0.32),
+                                    width: 1),
+                                color: Color.fromRGBO(201, 37, 37, 0.2),
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                                  child: Image(
+                                      image: AssetImage('assets/google.png')),
+                                ),
+                                Text('Sign In With Google',
+                                    style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 17))
-                                  ],
-                                ),
-                              ),
+                              ],
                             ),
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
-
-            ],
-          )
-        );
+            ),
+          ],
+        ));
       },
     );
   }
