@@ -1,4 +1,5 @@
 import 'package:aarohan_app/screens/loader_screen.dart';
+import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +17,17 @@ import 'dart:ui';
 import 'package:aarohan_app/widgets/loader.dart';
 import 'package:aarohan_app/screens/loader_screen.dart';
 
+import '../widgets/bottomMenu.dart';
+
 class Dashboard extends StatefulWidget {
   bool isIntroDone = false;
+
   @override
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
+  final _bottomMenuContoller = PageController(initialPage: 0);
   bool isLoading = false;
   String selectedcategory = "All";
   List<String> tags = [
@@ -37,6 +42,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     "Workshops",
     "Business"
   ];
+
   int x = 0;
   int selectedIndex;
   CarouselController buttonCarouselController = CarouselController();
@@ -48,6 +54,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   bool showBottomMenu = false;
   bool search = false;
   List<EventItem> eventItems;
+
+  bool visibleBottomMenu = false;
 
   void _runFilter(String enteredKeyword, List<EventItem> M) {
     List<EventItem> results = [];
@@ -66,6 +74,12 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     setState(() {
       _foundUsers = results;
     });
+  }
+
+  @override
+  void dispose() {
+    _bottomMenuContoller.dispose();
+    super.dispose();
   }
 
   @override
@@ -483,7 +497,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                   Visibility(
                     visible: !search,
                     child: Container(
-                        margin: EdgeInsets.only(top: 3.h),
+                        margin: EdgeInsets.only(top: 2.h),
                         height: 50.h,
                         child: (arr.length != 0)
                             ? CarouselSlider.builder(
@@ -747,9 +761,9 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                           fontWeight: FontWeight.w500),
                     ),
                   ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
+                  // SizedBox(
+                  //   height: 2.h,
+                  // ),
                   Visibility(
                     visible: !search,
                     child: Row(
@@ -904,29 +918,38 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                   ),
                 ],
               ),
-              AnimatedPositioned(
-                  curve: Curves.easeInOut,
-                  width: width,
-                  duration: Duration(milliseconds: 500),
-                  bottom: (showBottomMenu) ? height * 0.125 : -(height * 0.65),
-                  child: CustomGestureDetector(
-                      axis: CustomGestureDetector.AXIS_Y,
-                      velocity: threshold,
-                      onSwipeUp: () {
-                        this.setState(() {
-                          showBottomMenu = true;
-                        });
-                      },
-                      onSwipeDown: () {
-                        this.setState(() {
-                          showBottomMenu = false;
-                        });
-                      },
-                      child: MenuWidget(showBottomMenu, () {
-                        setState(() {
-                          showBottomMenu = !showBottomMenu;
-                        });
-                      }))),
+              // AnimatedPositioned(
+              //     curve: Curves.easeInOut,
+              //     width: width,
+              //     duration: Duration(milliseconds: 500),
+              //     bottom: (showBottomMenu) ? height * 0.125 : -(height * 0.65),
+              //     child: CustomGestureDetector(
+              //         axis: CustomGestureDetector.AXIS_Y,
+              //         velocity: threshold,
+              //         onSwipeUp: () {
+              //           this.setState(() {
+              //             showBottomMenu = true;
+              //           });
+              //         },
+              //         onSwipeDown: () {
+              //           this.setState(() {
+              //             showBottomMenu = false;
+              //           });
+              //         },
+              //         child: MenuWidget(showBottomMenu, () {
+              //           setState(() {
+              //             showBottomMenu = !showBottomMenu;
+              //           });
+              //         }))),
+
+              //  Visibility(
+              //  visible: visibleBottomMenu,
+              //  child: Container(
+              //  height: 20.h,
+              //  child: Text("gfsgss"),
+              //  color: Colors.red,
+              //  )),
+              BottomMenu()
             ]),
           ),
         ),

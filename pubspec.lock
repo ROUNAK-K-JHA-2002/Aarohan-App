@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.16"
+  animated_notch_bottom_bar:
+    dependency: "direct main"
+    description:
+      name: animated_notch_bottom_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.6"
   archive:
     dependency: transitive
     description:
