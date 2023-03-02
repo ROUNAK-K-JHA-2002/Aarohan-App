@@ -22,43 +22,47 @@ class ContributorResponse {
       );
 
   Map<String, dynamic> toJson() => {
-    "ContributorItem": List<dynamic>.from(contributorItem.map((x) => x.toJson())),
-  };
+        "ContributorItem":
+            List<dynamic>.from(contributorItem.map((x) => x.toJson())),
+      };
   static ContributorResponse contributorResponse = ContributorResponse();
 }
 
 class ContributorItem {
-  ContributorItem({
-    this.phone,
-    this.github,
-    this.imageUrl,
-    this.linkedin,
-    this.name
-  });
+  ContributorItem(
+      {this.phone,
+      this.github,
+      this.imageUrl,
+      this.linkedin,
+      this.name,
+      this.email});
 
   String phone;
   String linkedin;
   String imageUrl;
   String github;
   String name;
+  String email;
 
   factory ContributorItem.fromJson(Map<String, dynamic> json) =>
-      ContributorItem(phone: json['phone'],
-        linkedin: json['linkedin'],
-        github: json['github'],
-        imageUrl: json['imageUrl'],
-        name: json['name'],
-
-      );
+      ContributorItem(
+          phone: json['phone'],
+          linkedin: json['linkedin'],
+          github: json['github'],
+          imageUrl: json['imageUrl'],
+          name: json['name'],
+          email: json['email']);
 
   factory ContributorItem.fromFirestore(DocumentSnapshot documentSnapshot) {
     return ContributorItem.fromJson(documentSnapshot.data());
   }
 
-  Map<String, dynamic> toJson() => {"phone" : phone,
-    "github" : github,
-    "imageUrl" : imageUrl,
-    "linkedin" : linkedin,
-    "name":name
-  };
+  Map<String, dynamic> toJson() => {
+        "phone": phone,
+        "github": github,
+        "imageUrl": imageUrl,
+        "linkedin": linkedin,
+        "name": name,
+        "email": email
+      };
 }
