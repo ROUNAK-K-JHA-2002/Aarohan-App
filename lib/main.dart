@@ -3,6 +3,9 @@ import 'package:aarohan_app/interficio/interficio.dart';
 import 'package:aarohan_app/models/event.dart';
 import 'package:aarohan_app/resources/firestore_provider.dart';
 import 'package:aarohan_app/screens/dashboard.dart';
+import 'package:aarohan_app/screens/login.dart';
+import 'package:aarohan_app/services/auth_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +34,8 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp();
+  User user;
+  await AuthService().getUser().then((value) => user = value);
   runApp(MultiProvider(
     providers: [
       StreamProvider<List<EventItem>>(
@@ -52,9 +57,10 @@ Future main() async {
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: user == null ? Login() : Dashboard(),
       routes: {
         '/eventpage': (context) => Event_Detail(),
+        '/login': (context) => Login(),
         '/timeline': (context) => Timeline(),
         '/home': (context) => Dashboard(),
         '/leaderboard': (context) => Leaderboard(),

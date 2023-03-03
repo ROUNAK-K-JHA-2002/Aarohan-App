@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:aarohan_app/models/user.dart';
@@ -34,7 +35,7 @@ class AuthService {
     Users.us = Users.fromJson(user_data);
   }
 
-  Future gSignIn() async {
+  Future<User> gSignIn() async {
     try {
       final GoogleSignInAccount googleSignInAccount =
           await _googleSignIn.signIn();
@@ -77,7 +78,8 @@ class AuthService {
       }
 
       print('Google Sign In succeeded');
-
+      print(user);
+      return user;
       // assert(user.uid == currentUser.uid);
       //
       // assert(user.email != null);
@@ -86,16 +88,16 @@ class AuthService {
 
     } on FirebaseAuthException catch (e) {
       print(e.message);
+      return null;
     }
   }
 
   Future gSignOut() async {
     await _googleSignIn.signOut();
     await _auth.signOut();
-    print("User Sign Out");
   }
 
-  Future getUser() async {
+  Future<User> getUser() async {
     final User user = _auth.currentUser;
 
     // in the login page, based on the return value, the animation to be shown is decided.

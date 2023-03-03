@@ -1,8 +1,10 @@
 import 'package:aarohan_app/screens/loader_screen.dart';
-import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
+import 'package:aarohan_app/services/auth_services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:googleapis/admin/directory_v1.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:aarohan_app/widgets/menu_widget.dart';
@@ -27,7 +29,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
-  final _bottomMenuContoller = PageController(initialPage: 0);
   bool isLoading = false;
   String selectedcategory = "All";
   List<String> tags = [
@@ -77,12 +78,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   }
 
   @override
-  void dispose() {
-    _bottomMenuContoller.dispose();
-    super.dispose();
-  }
-
-  @override
   void initState() {
     // at the beginning, all users are shown
 
@@ -104,6 +99,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     double threshold = 100;
+    // print();
+
     return Sizer(builder: (context, orientation, deviceType) {
       return SafeArea(
         child: Container(

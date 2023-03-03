@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:from_css_color/from_css_color.dart';
+import 'package:googleapis/admin/directory_v1.dart';
 import 'package:googleapis/cloudtasks/v2.dart';
 import 'package:sizer/sizer.dart';
 import 'package:aarohan_app/services/auth_services.dart';
@@ -74,7 +75,13 @@ class _LoginState extends State<Login> {
                     GestureDetector(
                       onTap: () async {
                         AuthService authService = AuthService();
-                        authService.gSignIn();
+                        authService.gSignIn().then((value) {
+                          if (value != null) {
+                            Navigator.pushReplacementNamed(context, '/home');
+                          } else {
+                            print("error in Signin");
+                          }
+                        });
                       },
                       child: Container(
                         padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
