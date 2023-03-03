@@ -17,6 +17,23 @@ class FirebaseService {
     return ref.snapshots().map((events) =>
         events.docs.map((doc) => EventItem.fromFirestore(doc)).toList());
   }
+//   Stream<List<EventItem>> eventListStream1() async* {
+//   try {
+//     while (true) {
+//       await Future.delayed(const Duration(milliseconds: 100));
+//        CollectionReference<Map<String, dynamic>> ref =
+//         _firestore.collection('Events');
+//       dynamic response = await ref.snapshots().map((events) =>
+//         events.docs.map((doc) => EventItem.fromFirestore(doc)).toList());
+//       if (response.statusCode == 200) {
+//         yield response.data;
+//       }
+//     }
+//   } catch (e) {
+//     print(e);
+
+//   }
+// }
 
   Stream<List<ContactItem>> contactStream() {
     CollectionReference<Map<String, dynamic>> ref =
