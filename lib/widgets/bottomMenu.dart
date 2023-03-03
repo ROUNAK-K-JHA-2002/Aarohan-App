@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:aarohan_app/widgets/menuItems.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -65,6 +66,7 @@ class _BottomMenuState extends State<BottomMenu> {
               width: 90.w,
               decoration: BoxDecoration(
                   color: Colors.white,
+                  border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(15.0)),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -231,8 +233,9 @@ class _BottomMenuState extends State<BottomMenu> {
                                                     ),
                                                   )),
                                             ),
-                                            ElevatedButton(
-                                              child: Text("close"),
+                                            MaterialButton(
+                                              child: Image.asset(
+                                                  'assets/arrow_down.png'),
                                               onPressed: () {
                                                 setState(() {
                                                   sigmaX = 0;
@@ -408,8 +411,9 @@ class _BottomMenuState extends State<BottomMenu> {
                                                   ),
                                                 )),
                                               ),
-                                              ElevatedButton(
-                                                child: Text("close"),
+                                              MaterialButton(
+                                                child: Image.asset(
+                                                    'assets/arrow_down.png'),
                                                 onPressed: () {
                                                   setState(() {
                                                     sigmaX = 0;
@@ -597,8 +601,9 @@ class _BottomMenuState extends State<BottomMenu> {
                                                       ),
                                                     )),
                                               ),
-                                              ElevatedButton(
-                                                child: Text("close"),
+                                              MaterialButton(
+                                                child: Image.asset(
+                                                    'assets/arrow_down.png'),
                                                 onPressed: () {
                                                   setState(() {
                                                     sigmaX = 0;

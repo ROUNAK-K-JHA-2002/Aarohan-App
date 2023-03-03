@@ -38,89 +38,57 @@ class _ContactState extends State<Contact> {
             ),
             child: Scaffold(
               backgroundColor: Colors.transparent,
-              body: CustomGestureDetector(
-                axis: CustomGestureDetector.AXIS_Y,
-                velocity: threshold,
-                onSwipeUp: () {
-                  this.setState(() {
-                    showBottomMenu = true;
-                  });
-                },
-                onSwipeDown: () {
-                  this.setState(() {
-                    showBottomMenu = false;
-                  });
-                },
-                onTap: null,
-                child: Stack(
-                  children: [
-                    Column(
-                      children: [
-                        topBar(
-                          pageName: "Contact",
-                        ),
-                        Container(
-                          height: 70.h,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(3.w, 4.h, 3.w, 0),
-                            child: Container(
-                              height: MediaQuery.of(context).size.height,
-                              child: GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  // childAspectRatio: 0.75,
-                                  crossAxisCount: 2, mainAxisExtent: 23.85.h,
-                                ),
-                                itemBuilder: (BuildContext context, index) =>
-                                    Padding(
-                                  padding: EdgeInsets.all(8.sp),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.white, width: 1),
-                                      borderRadius: BorderRadius.circular(7.sp),
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          height: 13.h,
-                                          width: 45.w,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(7.sp),
-                                                topLeft: Radius.circular(7.sp)),
-                                          ),
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(7.sp),
-                                                topLeft: Radius.circular(7.sp)),
-                                            child: CachedNetworkImage(
-                                              imageUrl:
-                                                  contactItems[index].imageUrl,
-                                              fit: BoxFit.cover,
-                                              height: 20.h,
-                                              width: 45.w,
-                                              errorWidget:
-                                                  (context, url, error) {
-                                                print("Could not load content");
-                                                return ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  7.sp),
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  7.sp)),
-                                                  child: Image.asset(
-                                                      "assets/placeholder.jpg",
-                                                      height: 20.h,
-                                                      width: 45.w,
-                                                      fit: BoxFit.cover),
-                                                );
-                                              },
-                                              placeholder: (context, url) =>
-                                                  ClipRRect(
+              body: Stack(
+                children: [
+                  Column(
+                    children: [
+                      topBar(
+                        pageName: "Contact",
+                      ),
+                      Container(
+                        height: 70.h,
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(3.w, 4.h, 3.w, 0),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height,
+                            child: GridView.builder(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                // childAspectRatio: 0.75,
+                                crossAxisCount: 2, mainAxisExtent: 23.85.h,
+                              ),
+                              itemBuilder: (BuildContext context, index) =>
+                                  Padding(
+                                padding: EdgeInsets.all(8.sp),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.white, width: 1),
+                                    borderRadius: BorderRadius.circular(7.sp),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        height: 13.h,
+                                        width: 45.w,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(7.sp),
+                                              topLeft: Radius.circular(7.sp)),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(7.sp),
+                                              topLeft: Radius.circular(7.sp)),
+                                          child: CachedNetworkImage(
+                                            imageUrl:
+                                                contactItems[index].imageUrl,
+                                            fit: BoxFit.cover,
+                                            height: 20.h,
+                                            width: 45.w,
+                                            errorWidget: (context, url, error) {
+                                              print("Could not load content");
+                                              return ClipRRect(
                                                 borderRadius: BorderRadius.only(
                                                     topRight:
                                                         Radius.circular(7.sp),
@@ -131,108 +99,117 @@ class _ContactState extends State<Contact> {
                                                     height: 20.h,
                                                     width: 45.w,
                                                     fit: BoxFit.cover),
-                                              ),
+                                              );
+                                            },
+                                            placeholder: (context, url) =>
+                                                ClipRRect(
+                                              borderRadius: BorderRadius.only(
+                                                  topRight:
+                                                      Radius.circular(7.sp),
+                                                  topLeft:
+                                                      Radius.circular(7.sp)),
+                                              child: Image.asset(
+                                                  "assets/placeholder.jpg",
+                                                  height: 20.h,
+                                                  width: 45.w,
+                                                  fit: BoxFit.cover),
                                             ),
                                           ),
-
-                                          // child: Image(
-                                          //     image: AssetImage(
-                                          //         'assets/baby_enderman.png'),
-                                          //     fit: BoxFit.fitWidth,height: 20.h,)
-                                          // child: FittedBox(
-                                          //   fit: BoxFit.fill,
-                                          //   child: Image.asset(
-                                          //       'assets/baby_enderman.png'),
-                                          // ),
                                         ),
-                                        Container(
-                                          height: 8.2.h,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(8),
-                                                bottomRight:
-                                                    Radius.circular(8)),
-                                          ),
-                                          child: Column(
-                                            children: [
-                                              SizedBox(
-                                                height: 0.5.h,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    (contactItems == null ||
-                                                            contactItems
-                                                                    .length ==
-                                                                0)
-                                                        ? ''
-                                                        : '${contactItems[index].name}',
-                                                    textAlign: TextAlign.center,
-                                                    // overflow: TextOverflow.clip,
-                                                    style: TextStyle(
-                                                      fontSize: 11.sp,
-                                                      fontFamily: 'Poppins',
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: 0.5.h,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: [
-                                                  // SizedBox(width: 2.w,),
-                                                  InkWell(
-                                                      onTap: () {
-                                                        UrlLauncher.launch(
-                                                            "tel://${contactItems[index].phone}");
-                                                      },
-                                                      child: Container(
-                                                          child: Icon(
-                                                        Icons.phone,
-                                                        color: Colors.black,
-                                                      ))),
-                                                  // SizedBox(width: 1.5.w,),
 
-                                                  // SizedBox(width: 1.5.w,),
-                                                  InkWell(
+                                        // child: Image(
+                                        //     image: AssetImage(
+                                        //         'assets/baby_enderman.png'),
+                                        //     fit: BoxFit.fitWidth,height: 20.h,)
+                                        // child: FittedBox(
+                                        //   fit: BoxFit.fill,
+                                        //   child: Image.asset(
+                                        //       'assets/baby_enderman.png'),
+                                        // ),
+                                      ),
+                                      Container(
+                                        height: 8.2.h,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(8),
+                                              bottomRight: Radius.circular(8)),
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 0.5.h,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  (contactItems == null ||
+                                                          contactItems.length ==
+                                                              0)
+                                                      ? ''
+                                                      : '${contactItems[index].name}',
+                                                  textAlign: TextAlign.center,
+                                                  // overflow: TextOverflow.clip,
+                                                  style: TextStyle(
+                                                    fontSize: 11.sp,
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 0.5.h,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                // SizedBox(width: 2.w,),
+                                                InkWell(
                                                     onTap: () {
                                                       UrlLauncher.launch(
-                                                          "${contactItems[index].facebook}");
+                                                          "tel://${contactItems[index].phone}");
                                                     },
                                                     child: Container(
-                                                      child: Image(
-                                                        image: AssetImage(
-                                                            'assets/fb.png'),
-                                                        height: 3.h,
-                                                      ),
+                                                        child: Icon(
+                                                      Icons.phone,
+                                                      color: Colors.black,
+                                                    ))),
+                                                // SizedBox(width: 1.5.w,),
+
+                                                // SizedBox(width: 1.5.w,),
+                                                InkWell(
+                                                  onTap: () {
+                                                    UrlLauncher.launch(
+                                                        "${contactItems[index].facebook}");
+                                                  },
+                                                  child: Container(
+                                                    child: Image(
+                                                      image: AssetImage(
+                                                          'assets/fb.png'),
+                                                      height: 3.h,
                                                     ),
                                                   ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ),
-                                itemCount: l,
                               ),
+                              itemCount: l,
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                    BottomMenu()
-                  ],
-                ),
+                        ),
+                      )
+                    ],
+                  ),
+                  BottomMenu()
+                ],
               ),
             ),
           ),

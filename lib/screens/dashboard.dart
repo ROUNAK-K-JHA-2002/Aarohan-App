@@ -121,13 +121,12 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                   Visibility(
                     visible: search,
                     child: Container(
+                      margin:
+                          EdgeInsets.symmetric(vertical: 2.h, horizontal: 2.w),
                       decoration: BoxDecoration(
-                          color: fromCssColor('#E2F5FF').withOpacity(0.4),
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: Colors.white70,
-                                  width: 1,
-                                  style: BorderStyle.solid))),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(3.w, 1.5.h, 3.w, 1.5.h),
                         child: Column(
@@ -139,11 +138,10 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                   width: 3.w,
                                 ),
                                 Container(
-                                  width: 75.w,
+                                  width: 70.w,
                                   decoration: BoxDecoration(
-                                      // color: Colors.red,
                                       border: Border.all(
-                                          color: Colors.white, width: 0.5.sp),
+                                          color: Colors.black, width: 0.5.sp),
                                       borderRadius:
                                           BorderRadius.circular(10.sp)),
                                   child: Padding(
@@ -156,7 +154,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                         });
                                       },
                                       style: TextStyle(
-                                          color: Colors.white,
                                           fontFamily: 'Mons',
                                           fontSize: 13.sp,
                                           letterSpacing: 1),
@@ -171,8 +168,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                           border: InputBorder.none,
                                           labelText: 'Search',
                                           labelStyle: TextStyle(
-                                              color:
-                                                  Colors.white.withOpacity(0.5),
+                                              color: Colors.black,
                                               fontFamily: 'Mons',
                                               fontSize: 15.sp,
                                               fontWeight: FontWeight.w500)),
@@ -193,7 +189,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                         Icon(
                                           Icons.cancel,
                                           size: 25.sp,
-                                          color: Colors.white,
+                                          color: Colors.black,
                                         ),
                                       ],
                                     ),
@@ -224,8 +220,9 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                     child: Container(
                                       decoration: BoxDecoration(
                                           color: (selectedIndex == index)
-                                              ? Colors.black
-                                              : Color(0xFF035180),
+                                              ? Color.fromARGB(
+                                                  255, 16, 112, 106)
+                                              : Color.fromARGB(255, 34, 9, 136),
                                           borderRadius:
                                               BorderRadius.circular(7.sp)),
                                       alignment: Alignment.center,
@@ -494,8 +491,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                   Visibility(
                     visible: !search,
                     child: Container(
-                        margin: EdgeInsets.only(top: 2.h),
-                        height: 50.h,
+                        margin: EdgeInsets.only(top: 1.h),
+                        height: 48.h,
                         child: (arr.length != 0)
                             ? CarouselSlider.builder(
                                 itemCount: arr.length,
@@ -596,38 +593,73 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                         child: (_foundUsers != null && _foundUsers.isNotEmpty)
                             ? ListView.builder(
                                 itemCount: _foundUsers.length,
-                                itemBuilder: (context, index) => ClipRect(
-                                  child: BackdropFilter(
-                                    filter: ImageFilter.blur(
-                                        sigmaX: 1.5, sigmaY: 1.5),
-                                    child: Padding(
-                                      padding: EdgeInsets.fromLTRB(
-                                          4.w, 1.h, 4.w, 1.h),
-                                      child: InkWell(
-                                        onTap: () {
-                                          FocusManager.instance.primaryFocus
-                                              .unfocus();
-                                          Navigator.pushNamed(
-                                              context, '/eventpage',
-                                              arguments: {
-                                                'eventItem': _foundUsers[index]
-                                              });
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  color: Colors.white,
-                                                  width: 0.2.w),
-                                              borderRadius:
-                                                  BorderRadius.circular(15.sp),
-                                              color: fromCssColor('#E2F5FF')
-                                                  .withOpacity(0.3)),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                height: 23.w,
+                                itemBuilder: (context, index) => Container(
+                                  height: 10.h,
+                                  padding:
+                                      EdgeInsets.fromLTRB(4.w, 1.h, 4.w, 1.h),
+                                  child: InkWell(
+                                    onTap: () {
+                                      FocusManager.instance.primaryFocus
+                                          .unfocus();
+                                      Navigator.pushNamed(context, '/eventpage',
+                                          arguments: {
+                                            'eventItem': _foundUsers[index]
+                                          });
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.white,
+                                              width: 0.2.w),
+                                          borderRadius:
+                                              BorderRadius.circular(10.sp),
+                                          color: Colors.white),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            height: 23.w,
+                                            width: 23.w,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(10.sp),
+                                                  topLeft:
+                                                      Radius.circular(10.sp)),
+                                            ),
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(10.sp),
+                                                  topLeft:
+                                                      Radius.circular(10.sp)),
+                                              child: CachedNetworkImage(
+                                                imageUrl:
+                                                    _foundUsers[index].imageUrl,
                                                 width: 23.w,
-                                                decoration: BoxDecoration(
+                                                fit: BoxFit.cover,
+                                                height: 23.w,
+                                                errorWidget:
+                                                    (context, url, error) {
+                                                  print(
+                                                      "Could not load content");
+                                                  return ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    10.sp),
+                                                            topLeft: Radius
+                                                                .circular(
+                                                                    10.sp)),
+                                                    child: Image.asset(
+                                                        "assets/placeholder.jpg",
+                                                        height: 23.w,
+                                                        width: 23.w,
+                                                        fit: BoxFit.cover),
+                                                  );
+                                                },
+                                                placeholder: (context, url) =>
+                                                    ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.only(
                                                           bottomLeft:
@@ -636,83 +668,35 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                                           topLeft:
                                                               Radius.circular(
                                                                   15.sp)),
-                                                ),
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  15.sp),
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  15.sp)),
-                                                  child: CachedNetworkImage(
-                                                    imageUrl: _foundUsers[index]
-                                                        .imageUrl,
-                                                    width: 23.w,
-                                                    fit: BoxFit.cover,
-                                                    height: 23.w,
-                                                    errorWidget:
-                                                        (context, url, error) {
-                                                      print(
-                                                          "Could not load content");
-                                                      return ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        15.sp),
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        15.sp)),
-                                                        child: Image.asset(
-                                                            "assets/placeholder.jpg",
-                                                            height: 23.w,
-                                                            width: 23.w,
-                                                            fit: BoxFit.cover),
-                                                      );
-                                                    },
-                                                    placeholder:
-                                                        (context, url) =>
-                                                            ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                              bottomLeft: Radius
-                                                                  .circular(
-                                                                      15.sp),
-                                                              topLeft: Radius
-                                                                  .circular(
-                                                                      15.sp)),
-                                                      child: Image.asset(
-                                                          "assets/placeholder.jpg",
-                                                          height: 23.w,
-                                                          width: 23.w,
-                                                          fit: BoxFit.cover),
-                                                    ),
-                                                  ),
+                                                  child: Image.asset(
+                                                      "assets/placeholder.jpg",
+                                                      height: 23.w,
+                                                      width: 23.w,
+                                                      fit: BoxFit.cover),
                                                 ),
                                               ),
-                                              Expanded(
-                                                child: Container(
-                                                  child: Center(
-                                                    child: Text(
-                                                      _foundUsers[index]
-                                                          .title
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontFamily: 'Mons',
-                                                          letterSpacing: 1.1,
-                                                          fontSize: 13.sp,
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
+                                          Expanded(
+                                            child: Container(
+                                              child: Center(
+                                                child: Text(
+                                                  _foundUsers[index]
+                                                      .title
+                                                      .toString(),
+                                                  overflow: TextOverflow.clip,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontFamily: 'Mons',
+                                                      letterSpacing: 1.1,
+                                                      fontSize: 13.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -747,17 +731,19 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                     ),
                   ),
                   Visibility(
-                    visible: !search,
-                    child: Text(
-                      "Fest Dates",
-                      style: TextStyle(
-                          color: Colors.white,
-                          letterSpacing: 1.2,
-                          fontFamily: 'Mons',
-                          fontSize: 19.sp,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
+                      visible: !search,
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 2.h),
+                        child: Text(
+                          "Fest Dates",
+                          style: TextStyle(
+                              color: Colors.white,
+                              letterSpacing: 1.2,
+                              fontFamily: 'Mons',
+                              fontSize: 19.sp,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      )),
                   // SizedBox(
                   //   height: 2.h,
                   // ),
@@ -782,8 +768,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                             height: 8.h,
                             decoration: BoxDecoration(
                                 color: (day == "3rd")
-                                    ? Colors.white
-                                    : Colors.white70,
+                                    ? Colors.white70
+                                    : Colors.white,
                                 borderRadius: BorderRadius.circular(5.sp)),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -818,8 +804,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                             height: 8.h,
                             decoration: BoxDecoration(
                                 color: (day == "4th")
-                                    ? Colors.white
-                                    : Colors.white70,
+                                    ? Colors.white70
+                                    : Colors.white,
                                 borderRadius: BorderRadius.circular(5.sp)),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -854,8 +840,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                             height: 8.h,
                             decoration: BoxDecoration(
                                 color: (day == "5th")
-                                    ? Colors.white
-                                    : Colors.white70,
+                                    ? Colors.white70
+                                    : Colors.white,
                                 borderRadius: BorderRadius.circular(5.sp)),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -890,8 +876,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                             height: 8.h,
                             decoration: BoxDecoration(
                                 color: (day == "6th")
-                                    ? Colors.white
-                                    : Colors.white70,
+                                    ? Colors.white70
+                                    : Colors.white,
                                 borderRadius: BorderRadius.circular(5.sp)),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -915,37 +901,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                   ),
                 ],
               ),
-              // AnimatedPositioned(
-              //     curve: Curves.easeInOut,
-              //     width: width,
-              //     duration: Duration(milliseconds: 500),
-              //     bottom: (showBottomMenu) ? height * 0.125 : -(height * 0.65),
-              //     child: CustomGestureDetector(
-              //         axis: CustomGestureDetector.AXIS_Y,
-              //         velocity: threshold,
-              //         onSwipeUp: () {
-              //           this.setState(() {
-              //             showBottomMenu = true;
-              //           });
-              //         },
-              //         onSwipeDown: () {
-              //           this.setState(() {
-              //             showBottomMenu = false;
-              //           });
-              //         },
-              //         child: MenuWidget(showBottomMenu, () {
-              //           setState(() {
-              //             showBottomMenu = !showBottomMenu;
-              //           });
-              //         }))),
-
-              //  Visibility(
-              //  visible: visibleBottomMenu,
-              //  child: Container(
-              //  height: 20.h,
-              //  child: Text("gfsgss"),
-              //  color: Colors.red,
-              //  )),
               BottomMenu()
             ]),
           ),
