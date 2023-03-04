@@ -64,7 +64,7 @@ class _Event_DetailState extends State<Event_Detail> {
                           slivers: [
                             SliverAppBar(
                               leading: Container(
-                                padding: EdgeInsets.fromLTRB(5.w, 1.h, 0, 0),
+                                padding: EdgeInsets.fromLTRB(5.w, 0, 0, 0),
                                 child: InkWell(
                                   onTap: () {
                                     Navigator.pop(context);
@@ -72,10 +72,13 @@ class _Event_DetailState extends State<Event_Detail> {
                                   child: Container(
                                     // margin: EdgeInsets.only(top: 5.h),
                                     child: CircleAvatar(
+                                      // radius: 15,
+                                      // backgroundImage:
+                                      //     AssetImage('assets/back.png'),
                                       backgroundColor:
                                           Color.fromRGBO(232, 94, 86, 1),
-                                      radius: 20,
-                                      // backgroundImage: AssetImage('assets/back.png'),
+                                      radius: 18,
+
                                       child: Icon(
                                         Icons.arrow_back,
                                         color: Colors.white,
@@ -147,7 +150,7 @@ class _Event_DetailState extends State<Event_Detail> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         InkWell(
-                                          onTap: () async {},
+                                          onTap: ()  {},
                                           child: Padding(
                                             padding: EdgeInsets.fromLTRB(
                                                 4.w, 0, 0, 0),
@@ -419,7 +422,8 @@ class _Event_DetailState extends State<Event_Detail> {
                                             color: Colors.white,
                                             fontWeight: FontWeight.w600)),
                                   ),
-                                  Padding(
+                                  Expanded(
+                                      child: Padding(
                                     padding:
                                         EdgeInsets.fromLTRB(5.w, 3.h, 7.w, 2.h),
                                     child: Text(eventItem.body,
@@ -429,7 +433,7 @@ class _Event_DetailState extends State<Event_Detail> {
                                             fontFamily: 'Poppins',
                                             letterSpacing: 1.1,
                                             fontWeight: FontWeight.w200)),
-                                  )
+                                  ))
                                 ],
                               ),
                             ]))

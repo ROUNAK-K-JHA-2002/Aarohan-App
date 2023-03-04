@@ -18,7 +18,7 @@ class Timeline extends StatefulWidget {
 class _TimelineState extends State<Timeline> {
   Map<String, List> M = {};
   bool showBottomMenu = false;
-  String day = "3rd";
+  String day = "9th";
   int x = 0;
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _TimelineState extends State<Timeline> {
     Sort_Events sort = Sort_Events();
     setState(() {
       if (x == 0 && dayItems.length != 0) {
-        M = sort.func(dayItems[0].events);
+        M = sort.func(dayItems[4].events);
         x++;
         print(dayItems);
       }
@@ -82,9 +82,9 @@ class _TimelineState extends State<Timeline> {
                               InkWell(
                                 onTap: () {
                                   setState(() {
-                                    day = "3rd";
+                                    day = "9th";
                                     M = {};
-                                    M = sort.func(dayItems[0].events);
+                                    M = sort.func(dayItems[4].events);
                                     print(M);
                                   });
                                 },
@@ -95,9 +95,9 @@ class _TimelineState extends State<Timeline> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "3",
+                                        "9",
                                         style: TextStyle(
-                                            color: (day == "3rd")
+                                            color: (day == "9th")
                                                 ? Color.fromRGBO(232, 94, 86, 1)
                                                 : Colors.black,
                                             fontFamily: 'Staat',
@@ -106,7 +106,7 @@ class _TimelineState extends State<Timeline> {
                                       ),
                                       SizedBox(height: 3.5),
                                       Visibility(
-                                        visible: (day == "3rd"),
+                                        visible: (day == "9th"),
                                         child: Container(
                                           height: 5,
                                           width: 5,
@@ -123,9 +123,9 @@ class _TimelineState extends State<Timeline> {
                               InkWell(
                                 onTap: () {
                                   setState(() {
-                                    day = "4th";
+                                    day = "10th";
                                     M = {};
-                                    M = sort.func(dayItems[0].events);
+                                    M = sort.func(dayItems[1].events);
                                     print(M);
                                   });
                                 },
@@ -136,9 +136,9 @@ class _TimelineState extends State<Timeline> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "4",
+                                        "10",
                                         style: TextStyle(
-                                            color: (day == "4th")
+                                            color: (day == "10th")
                                                 ? Color.fromRGBO(232, 94, 86, 1)
                                                 : Colors.black,
                                             fontFamily: 'Staat',
@@ -147,7 +147,7 @@ class _TimelineState extends State<Timeline> {
                                       ),
                                       SizedBox(height: 3.5),
                                       Visibility(
-                                        visible: (day == "4th"),
+                                        visible: (day == "10th"),
                                         child: Container(
                                           height: 5,
                                           width: 5,
@@ -164,9 +164,9 @@ class _TimelineState extends State<Timeline> {
                               InkWell(
                                 onTap: () {
                                   setState(() {
-                                    day = "5th";
+                                    day = "11th";
                                     M = {};
-                                    M = sort.func(dayItems[0].events);
+                                    M = sort.func(dayItems[2].events);
                                     print(M);
                                   });
                                 },
@@ -177,9 +177,9 @@ class _TimelineState extends State<Timeline> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "5",
+                                        "11",
                                         style: TextStyle(
-                                            color: (day == "5th")
+                                            color: (day == "11th")
                                                 ? Color.fromRGBO(232, 94, 86, 1)
                                                 : Colors.black,
                                             fontFamily: 'Staat',
@@ -188,7 +188,7 @@ class _TimelineState extends State<Timeline> {
                                       ),
                                       SizedBox(height: 3.5),
                                       Visibility(
-                                        visible: (day == "5th"),
+                                        visible: (day == "11th"),
                                         child: Container(
                                           height: 5,
                                           width: 5,
@@ -205,9 +205,9 @@ class _TimelineState extends State<Timeline> {
                               InkWell(
                                 onTap: () {
                                   setState(() {
-                                    day = "6th";
+                                    day = "12th";
                                     M = {};
-                                    M = sort.func(dayItems[0].events);
+                                    M = sort.func(dayItems[3].events);
                                     print(M);
                                   });
                                 },
@@ -218,9 +218,9 @@ class _TimelineState extends State<Timeline> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "6",
+                                        "12",
                                         style: TextStyle(
-                                            color: (day == "6th")
+                                            color: (day == "12th")
                                                 ? Color.fromRGBO(232, 94, 86, 1)
                                                 : Colors.black,
                                             fontFamily: 'Staat',
@@ -229,7 +229,7 @@ class _TimelineState extends State<Timeline> {
                                       ),
                                       SizedBox(height: 3.5),
                                       Visibility(
-                                        visible: (day == "6th"),
+                                        visible: (day == "12th"),
                                         child: Container(
                                           height: 5,
                                           width: 5,
