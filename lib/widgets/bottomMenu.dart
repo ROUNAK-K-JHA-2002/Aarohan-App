@@ -600,14 +600,14 @@ class _BottomMenuState extends State<BottomMenu> {
                                                           SingleChildScrollView(
                                                         child: Column(
                                                           children: [
-                                                            MenuItems(
-                                                              leadingImage:
-                                                                  'assets/leaderboard.png',
-                                                              itemName:
-                                                                  'Leaderboard',
-                                                              routeName:
-                                                                  '/leaderboard',
-                                                            ),
+                                                            // MenuItems(
+                                                            //   leadingImage:
+                                                            //       'assets/leaderboard.png',
+                                                            //   itemName:
+                                                            //       'Leaderboard',
+                                                            //   routeName:
+                                                            //       '/leaderboard',
+                                                            // ),
                                                             MenuItems(
                                                               leadingImage:
                                                                   'assets/journo.png',

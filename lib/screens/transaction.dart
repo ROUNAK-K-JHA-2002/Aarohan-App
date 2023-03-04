@@ -66,12 +66,11 @@ class _TransactionState extends State<Transaction> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 5.w),
                         child: Container(
-                          height: 68.h,
                           decoration: BoxDecoration(
                               border:
                                   Border.all(color: Colors.white, width: 0.2.w),
                               borderRadius: BorderRadius.circular(15.sp),
-                              color: fromCssColor('#E2F5FF').withOpacity(0.25)),
+                              color: Colors.white),
                           padding: EdgeInsets.symmetric(
                               horizontal: 5.w, vertical: 2.h),
                           child: SingleChildScrollView(
@@ -96,9 +95,10 @@ class _TransactionState extends State<Transaction> {
                                     Expanded(
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            // color: Colors.red,
+                                            color: fromCssColor("#CECECE")
+                                                .withOpacity(0.4),
                                             border: Border.all(
-                                                color: Colors.white,
+                                                color: Colors.red,
                                                 width: 0.5.sp),
                                             borderRadius:
                                                 BorderRadius.circular(10.sp)),
@@ -262,29 +262,26 @@ class _TransactionState extends State<Transaction> {
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
-                                          // color: Colors.red,
+                                          color: fromCssColor('#CECECE')
+                                              .withOpacity(0.4),
                                           border: Border.all(
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               width: 0.5.sp),
                                           borderRadius:
-                                              BorderRadius.circular(10.sp)),
+                                              BorderRadius.circular(7.sp)),
                                       width: 35.w,
-                                      // height: 6.h,
                                       child: TextField(
                                         style: TextStyle(
-                                            color: Colors.white,
                                             fontFamily: 'Poppins',
-                                            fontSize: 13.sp,
+                                            fontSize: 12.sp,
                                             letterSpacing: 1),
                                         controller: amountController,
                                         decoration: InputDecoration(
                                             contentPadding: EdgeInsets.fromLTRB(
                                                 2.w, 5, 1.w, 5),
                                             border: InputBorder.none,
-                                            labelText: 'Amount',
-                                            labelStyle: TextStyle(
-                                                color: Colors.white
-                                                    .withOpacity(0.5),
+                                            hintText: 'Amount',
+                                            hintStyle: TextStyle(
                                                 fontFamily: 'Poppins',
                                                 fontSize: 12.sp,
                                                 fontWeight: FontWeight.w500)),
@@ -333,13 +330,12 @@ class _TransactionState extends State<Transaction> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 6.w, vertical: 1.h),
                                         decoration: BoxDecoration(
-                                            color:
-                                                Colors.white.withOpacity(0.4),
+                                            color: Colors.white,
                                             border: Border.all(
-                                                color: Colors.white,
+                                                color: Colors.black,
                                                 width: 0.5.sp),
                                             borderRadius:
-                                                BorderRadius.circular(10.sp)),
+                                                BorderRadius.circular(5.sp)),
                                         child: Text(
                                           "SEND",
                                           style: TextStyle(
@@ -357,7 +353,6 @@ class _TransactionState extends State<Transaction> {
                                 Text(
                                   "Recent Transactions",
                                   style: TextStyle(
-                                      color: Colors.white,
                                       letterSpacing: 0.5,
                                       fontFamily: 'Staat',
                                       fontSize: 17.sp,

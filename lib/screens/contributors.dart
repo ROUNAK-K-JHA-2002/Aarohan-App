@@ -51,9 +51,9 @@ class _ContributorsState extends State<Contributors> {
                       Expanded(
                           child: Container(
                         child: Padding(
-                          padding: EdgeInsets.fromLTRB(3.w, 3.h, 3.w, 0),
+                          padding: EdgeInsets.fromLTRB(3.w, 2.h, 3.w, 0),
                           child: Container(
-                            height: MediaQuery.of(context).size.height,
+                            // height: MediaQuery.of(context).size.height,
                             child: GridView.builder(
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
@@ -62,8 +62,8 @@ class _ContributorsState extends State<Contributors> {
                               ),
                               itemBuilder: (BuildContext context, index) =>
                                   Container(
-                                margin: EdgeInsets.all(2.w),
-                                padding: EdgeInsets.all(2.sp),
+                                margin: EdgeInsets.all(3.sp),
+                                padding: EdgeInsets.all(3.sp),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(7.sp),
@@ -86,7 +86,7 @@ class _ContributorsState extends State<Contributors> {
                                             imageUrl: contributorItems[index]
                                                 .imageUrl,
                                             fit: BoxFit.cover,
-                                            height: 15.h,
+                                            height: 17.h,
                                             width: 45.w,
                                             errorWidget: (context, url, error) {
                                               print("Could not load content");
@@ -120,7 +120,7 @@ class _ContributorsState extends State<Contributors> {
                                         ),
                                       ),
                                       Container(
-                                        height: 8.2.h,
+                                        // height: 8.2.h,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius: BorderRadius.only(

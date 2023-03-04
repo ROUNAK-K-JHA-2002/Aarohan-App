@@ -586,7 +586,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                   Visibility(
                     visible: search,
                     child: Container(
-                      height: 70.h,
+                      height: 73.h,
                       child: (_foundUsers != null && _foundUsers.isNotEmpty)
                           ? ListView.builder(
                               itemCount: _foundUsers.length,

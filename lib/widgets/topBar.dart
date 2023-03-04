@@ -60,7 +60,7 @@ class _topBarState extends State<topBar> {
               child: Container(
                 child: CircleAvatar(
                   backgroundColor: Color.fromRGBO(232, 94, 86, 1),
-                  radius: 20,
+                  radius: 13.sp,
                   // backgroundImage: AssetImage('assets/back.png'),
                   child: Icon(
                     Icons.arrow_back,

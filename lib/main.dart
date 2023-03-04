@@ -126,7 +126,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Transaction(),
+        home: FirebaseAuth.instance.currentUser == null ? Login() : Dashboard(),
         routes: {
           '/eventpage': (context) => Event_Detail(),
           '/login': (context) => Login(),
