@@ -30,147 +30,101 @@ class _PrelimsState extends State<Prelims> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/Aarohan_bg.png"), fit: BoxFit.fill),
+                  image: AssetImage("assets/Aarohan_bg.png"),
+                  colorFilter: new ColorFilter.mode(
+                      Color.fromARGB(177, 48, 17, 6), BlendMode.srcOver),
+                  fit: BoxFit.fill),
             ),
             child: Scaffold(
               resizeToAvoidBottomInset: false,
               backgroundColor: Colors.transparent,
-              body: CustomGestureDetector(
-                axis: CustomGestureDetector.AXIS_Y,
-                velocity: threshold,
-                onSwipeUp: () {
-                  this.setState(() {
-                    showBottomMenu = true;
-                  });
-                },
-                onSwipeDown: () {
-                  this.setState(() {
-                    showBottomMenu = false;
-                  });
-                },
-                onTap: null,
-                child: Stack(
-                  children: [
-                    Column(
-                      children: [
-                        topBar(
-                          pageName: "Prelims",
-                        ),
-                        SizedBox(
-                          height: 3.h,
-                        ),
-                        Container(
-                          height: 65.h,
-                          child: ListView.builder(
-                            itemCount: prelimItems.length,
-                            itemBuilder: (context, index) {
-                              return ClipRect(
-                                child: BackdropFilter(
-                                  filter: ImageFilter.blur(
-                                      sigmaX: 1.5, sigmaY: 1.5),
-                                  child: Padding(
-                                    padding:
-                                        EdgeInsets.fromLTRB(4.w, 1.h, 4.w, 1.h),
-                                    child: InkWell(
-                                      onTap: () {
-                                        FocusManager.instance.primaryFocus
-                                            .unfocus();
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => SafeArea(
-                                                      child: Scaffold(
-                                                        body: InAppWebView(
-                                                          initialUrlRequest:
-                                                              URLRequest(
-                                                                  url: Uri.parse(
-                                                                      "${prelimItems[index].url}")),
-                                                          androidOnPermissionRequest:
-                                                              (controller,
-                                                                  origin,
-                                                                  resources) async {
-                                                            return PermissionRequestResponse(
-                                                                resources:
-                                                                    resources,
-                                                                action:
-                                                                    PermissionRequestResponseAction
-                                                                        .GRANT);
-                                                          },
-                                                          onProgressChanged:
-                                                              (controller,
-                                                                  progress) {
-                                                            setState(() {
-                                                              this.progress =
-                                                                  progress /
-                                                                      100;
-                                                            });
-                                                          },
-                                                        ),
+              body: Stack(
+                children: [
+                  Column(
+                    children: [
+                      topBar(
+                        pageName: "Prelims",
+                      ),
+                      SizedBox(
+                        height: 3.h,
+                      ),
+                      Container(
+                        height: 65.h,
+                        child: ListView.builder(
+                          itemCount: prelimItems.length,
+                          itemBuilder: (context, index) {
+                            return ClipRect(
+                              child: BackdropFilter(
+                                filter:
+                                    ImageFilter.blur(sigmaX: 1.5, sigmaY: 1.5),
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.fromLTRB(4.w, 1.h, 4.w, 1.h),
+                                  child: InkWell(
+                                    onTap: () {
+                                      FocusManager.instance.primaryFocus
+                                          .unfocus();
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => SafeArea(
+                                                    child: Scaffold(
+                                                      body: InAppWebView(
+                                                        initialUrlRequest:
+                                                            URLRequest(
+                                                                url: Uri.parse(
+                                                                    "${prelimItems[index].url}")),
+                                                        androidOnPermissionRequest:
+                                                            (controller, origin,
+                                                                resources) async {
+                                                          return PermissionRequestResponse(
+                                                              resources:
+                                                                  resources,
+                                                              action:
+                                                                  PermissionRequestResponseAction
+                                                                      .GRANT);
+                                                        },
+                                                        onProgressChanged:
+                                                            (controller,
+                                                                progress) {
+                                                          setState(() {
+                                                            this.progress =
+                                                                progress / 100;
+                                                          });
+                                                        },
                                                       ),
-                                                    )));
-                                      },
+                                                    ),
+                                                  )));
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15.sp),
+                                          color: Colors.white),
                                       child: Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.white,
-                                                width: 0.2.w),
-                                            borderRadius:
-                                                BorderRadius.circular(15.sp),
-                                            color: fromCssColor('#E2F5FF')
-                                                .withOpacity(0.3)),
-                                        child: Container(
-                                          child: Center(
-                                            child: Text(
-                                              prelimItems[index]
-                                                  .title
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Mons',
-                                                  letterSpacing: 1.1,
-                                                  fontSize: 13.sp,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
+                                        child: Center(
+                                          child: Text(
+                                            prelimItems[index].title.toString(),
+                                            style: TextStyle(
+                                                fontFamily: 'Mons',
+                                                letterSpacing: 1.1,
+                                                fontSize: 15.sp,
+                                                fontWeight: FontWeight.w500),
                                           ),
-                                          height: 8.h,
                                         ),
+                                        height: 8.h,
                                       ),
                                     ),
                                   ),
                                 ),
-                              );
-                            },
-                          ),
-                        )
-                      ],
-                    ),
-                    AnimatedPositioned(
-                        curve: Curves.easeInOut,
-                        width: width,
-                        duration: Duration(milliseconds: 500),
-                        bottom: (showBottomMenu)
-                            ? height * 0.125
-                            : -(height * 0.65),
-                        child: CustomGestureDetector(
-                            axis: CustomGestureDetector.AXIS_Y,
-                            velocity: threshold,
-                            onSwipeUp: () {
-                              this.setState(() {
-                                showBottomMenu = true;
-                              });
-                            },
-                            onSwipeDown: () {
-                              this.setState(() {
-                                showBottomMenu = false;
-                              });
-                            },
-                            child: MenuWidget(showBottomMenu, () {
-                              setState(() {
-                                showBottomMenu = !showBottomMenu;
-                              });
-                            })))
-                  ],
-                ),
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

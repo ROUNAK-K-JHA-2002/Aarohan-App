@@ -246,9 +246,9 @@ class _TimelineState extends State<Timeline> {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 3.h),
+                        Expanded(
                           child: Container(
+                            padding: EdgeInsets.only(top: 3.h),
                             height: 59.h,
                             // color: Colors.red,
                             child: (M.length != 0)
@@ -300,7 +300,6 @@ class _TimelineState extends State<Timeline> {
                         )
                       ],
                     ),
-                    BottomMenu()
                   ],
                 ),
               ),

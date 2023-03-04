@@ -39,7 +39,6 @@ class _AboutState extends State<About> {
                     children: [
                       topBar(
                         pageName: 'About Us',
-                        leftImage: 'assets/back.png',
                       ),
                       SizedBox(
                         height: 3.h,
@@ -66,9 +65,7 @@ class _AboutState extends State<About> {
                       )
                     ],
                   ),
-                  // BottomMenu()
                 ],
-                
               ),
             ),
           ),

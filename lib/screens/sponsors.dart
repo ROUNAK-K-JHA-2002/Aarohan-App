@@ -58,7 +58,8 @@ class _SponsorsState extends State<Sponsors> {
                         topBar(
                           pageName: "Sponsors",
                         ),
-                        Container(
+                        Expanded(
+                            child: Container(
                           height: 70.h,
                           child: Padding(
                             padding: EdgeInsets.fromLTRB(3.w, 4.h, 3.w, 0),
@@ -121,10 +122,9 @@ class _SponsorsState extends State<Sponsors> {
                               ),
                             ),
                           ),
-                        )
+                        ))
                       ],
                     ),
-                    // BottomMenu()
                   ],
                 ),
               ),

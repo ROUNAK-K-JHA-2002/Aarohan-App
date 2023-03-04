@@ -6,10 +6,11 @@ import 'package:sizer/sizer.dart';
 
 class topBar extends StatefulWidget {
   final String pageName;
-  final String rightImage;
-  final String leftImage;
-  const topBar({Key key, this.pageName, this.rightImage, this.leftImage})
-      : super(key: key);
+
+  const topBar({
+    Key key,
+    this.pageName,
+  }) : super(key: key);
 
   @override
   State<topBar> createState() => _topBarState();
@@ -33,7 +34,7 @@ class _topBarState extends State<topBar> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                child: Padding(
+                child: Container(
                   padding: EdgeInsets.only(
                     bottom: 1.h,
                   ),
@@ -50,7 +51,8 @@ class _topBarState extends State<topBar> {
             ],
           ),
           Positioned(
-            left: 1.w,
+            left: 2.w,
+            top: 1.w,
             child: InkWell(
               onTap: () {
                 Navigator.pop(context);
@@ -58,7 +60,7 @@ class _topBarState extends State<topBar> {
               child: Container(
                 child: CircleAvatar(
                   backgroundColor: Color.fromRGBO(232, 94, 86, 1),
-                  radius: 18,
+                  radius: 20,
                   // backgroundImage: AssetImage('assets/back.png'),
                   child: Icon(
                     Icons.arrow_back,

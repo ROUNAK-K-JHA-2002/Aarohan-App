@@ -166,7 +166,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                       decoration: InputDecoration(
                                           contentPadding: EdgeInsets.all(10.sp),
                                           border: InputBorder.none,
-                                          labelText: 'Search',
+                                          hintText: 'Search',
                                           labelStyle: TextStyle(
                                               color: Colors.black,
                                               fontFamily: 'Mons',
@@ -585,148 +585,135 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                   ),
                   Visibility(
                     visible: search,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 1.h),
-                      child: Container(
-                        height: 68.h,
-                        child: (_foundUsers != null && _foundUsers.isNotEmpty)
-                            ? ListView.builder(
-                                itemCount: _foundUsers.length,
-                                itemBuilder: (context, index) => Container(
-                                  height: 10.h,
-                                  padding:
-                                      EdgeInsets.fromLTRB(4.w, 1.h, 4.w, 1.h),
-                                  child: InkWell(
-                                    onTap: () {
-                                      FocusManager.instance.primaryFocus
-                                          .unfocus();
-                                      Navigator.pushNamed(context, '/eventpage',
-                                          arguments: {
-                                            'eventItem': _foundUsers[index]
-                                          });
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.white,
-                                              width: 0.2.w),
-                                          borderRadius:
-                                              BorderRadius.circular(10.sp),
-                                          color: Colors.white),
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            height: 23.w,
-                                            width: 23.w,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(10.sp),
-                                                  topLeft:
-                                                      Radius.circular(10.sp)),
-                                            ),
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(10.sp),
-                                                  topLeft:
-                                                      Radius.circular(10.sp)),
-                                              child: CachedNetworkImage(
-                                                imageUrl:
-                                                    _foundUsers[index].imageUrl,
-                                                width: 23.w,
-                                                fit: BoxFit.cover,
-                                                height: 23.w,
-                                                errorWidget:
-                                                    (context, url, error) {
-                                                  print(
-                                                      "Could not load content");
-                                                  return ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            bottomLeft:
-                                                                Radius.circular(
-                                                                    10.sp),
-                                                            topLeft: Radius
-                                                                .circular(
-                                                                    10.sp)),
-                                                    child: Image.asset(
-                                                        "assets/placeholder.jpg",
-                                                        height: 23.w,
-                                                        width: 23.w,
-                                                        fit: BoxFit.cover),
-                                                  );
-                                                },
-                                                placeholder: (context, url) =>
-                                                    ClipRRect(
+                    child: Container(
+                      height: 70.h,
+                      child: (_foundUsers != null && _foundUsers.isNotEmpty)
+                          ? ListView.builder(
+                              itemCount: _foundUsers.length,
+                              itemBuilder: (context, index) => Container(
+                                height: 10.h,
+                                padding:
+                                    EdgeInsets.fromLTRB(4.w, 1.h, 4.w, 1.h),
+                                child: InkWell(
+                                  onTap: () {
+                                    FocusManager.instance.primaryFocus
+                                        .unfocus();
+                                    Navigator.pushNamed(context, '/eventpage',
+                                        arguments: {
+                                          'eventItem': _foundUsers[index]
+                                        });
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: Colors.white, width: 0.2.w),
+                                        borderRadius:
+                                            BorderRadius.circular(10.sp),
+                                        color: Colors.white),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(10.sp),
+                                                topLeft:
+                                                    Radius.circular(10.sp)),
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(10.sp),
+                                                topLeft:
+                                                    Radius.circular(10.sp)),
+                                            child: CachedNetworkImage(
+                                              imageUrl:
+                                                  _foundUsers[index].imageUrl,
+                                              width: 23.w,
+                                              fit: BoxFit.cover,
+                                              height: 23.w,
+                                              errorWidget:
+                                                  (context, url, error) {
+                                                print("Could not load content");
+                                                return ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.only(
                                                           bottomLeft:
                                                               Radius.circular(
-                                                                  15.sp),
+                                                                  10.sp),
                                                           topLeft:
                                                               Radius.circular(
-                                                                  15.sp)),
+                                                                  10.sp)),
                                                   child: Image.asset(
                                                       "assets/placeholder.jpg",
                                                       height: 23.w,
                                                       width: 23.w,
                                                       fit: BoxFit.cover),
-                                                ),
+                                                );
+                                              },
+                                              placeholder: (context, url) =>
+                                                  ClipRRect(
+                                                borderRadius: BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(15.sp),
+                                                    topLeft:
+                                                        Radius.circular(15.sp)),
+                                                child: Image.asset(
+                                                    "assets/placeholder.jpg",
+                                                    height: 23.w,
+                                                    width: 23.w,
+                                                    fit: BoxFit.cover),
                                               ),
                                             ),
                                           ),
-                                          Expanded(
-                                            child: Container(
-                                              child: Center(
-                                                child: Text(
-                                                  _foundUsers[index]
-                                                      .title
-                                                      .toString(),
-                                                  overflow: TextOverflow.clip,
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontFamily: 'Mons',
-                                                      letterSpacing: 1.1,
-                                                      fontSize: 13.sp,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            child: Center(
+                                              child: Text(
+                                                _foundUsers[index]
+                                                    .title
+                                                    .toString(),
+                                                overflow: TextOverflow.clip,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontFamily: 'Mons',
+                                                    letterSpacing: 1.1,
+                                                    fontSize: 13.sp,
+                                                    fontWeight:
+                                                        FontWeight.w400),
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : Padding(
-                                padding:
-                                    EdgeInsets.fromLTRB(4.w, 1.h, 4.w, 1.h),
-                                child: Container(
-                                  height: 8.h,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.white, width: 0.2.w),
-                                      borderRadius:
-                                          BorderRadius.circular(15.sp),
-                                      color: fromCssColor('#E2F5FF')
-                                          .withOpacity(0.25)),
-                                  child: Center(
-                                    child: Text(
-                                      'No results found',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Mons',
-                                          letterSpacing: 1.1,
-                                          fontSize: 13.sp,
-                                          fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
                               ),
-                      ),
+                            )
+                          : Padding(
+                              padding: EdgeInsets.fromLTRB(4.w, 1.h, 4.w, 1.h),
+                              child: Container(
+                                height: 8.h,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.white, width: 0.2.w),
+                                  borderRadius: BorderRadius.circular(15.sp),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'No results found',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Mons',
+                                        letterSpacing: 1.1,
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                            ),
                     ),
                   ),
                   Visibility(
@@ -900,7 +887,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                   ),
                 ],
               ),
-              BottomMenu()
+              Visibility(visible: !search, child: BottomMenu())
             ]),
           ),
         ),

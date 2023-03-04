@@ -47,33 +47,31 @@ class _ContributorsState extends State<Contributors> {
                     children: [
                       topBar(
                         pageName: "Contributors",
-                        leftImage: 'assets/back.png',
                       ),
-                      Container(
-                        height: 70.h,
+                      Expanded(
+                          child: Container(
                         child: Padding(
-                          padding: EdgeInsets.fromLTRB(3.w, 4.h, 3.w, 0),
+                          padding: EdgeInsets.fromLTRB(3.w, 3.h, 3.w, 0),
                           child: Container(
                             height: MediaQuery.of(context).size.height,
                             child: GridView.builder(
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                // childAspectRatio: 0.75,
-                                crossAxisCount: 2, mainAxisExtent: 23.85.h,
+                                childAspectRatio: 0.75,
+                                crossAxisCount: 2,
                               ),
                               itemBuilder: (BuildContext context, index) =>
-                                  Padding(
-                                padding: EdgeInsets.all(8.sp),
+                                  Container(
+                                margin: EdgeInsets.all(2.w),
+                                padding: EdgeInsets.all(2.sp),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.white, width: 1),
                                     borderRadius: BorderRadius.circular(7.sp),
                                   ),
                                   child: Column(
                                     children: [
                                       Container(
-                                        height: 13.h,
+                                        // height: 13.h,
                                         width: 45.w,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.only(
@@ -88,7 +86,7 @@ class _ContributorsState extends State<Contributors> {
                                             imageUrl: contributorItems[index]
                                                 .imageUrl,
                                             fit: BoxFit.cover,
-                                            height: 20.h,
+                                            height: 15.h,
                                             width: 45.w,
                                             errorWidget: (context, url, error) {
                                               print("Could not load content");
@@ -224,10 +222,9 @@ class _ContributorsState extends State<Contributors> {
                             ),
                           ),
                         ),
-                      )
+                      ))
                     ],
                   ),
-                  BottomMenu()
                 ],
               ),
             ),

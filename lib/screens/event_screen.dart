@@ -72,9 +72,14 @@ class _Event_DetailState extends State<Event_Detail> {
                                   child: Container(
                                     // margin: EdgeInsets.only(top: 5.h),
                                     child: CircleAvatar(
-                                      // radius: 15,
-                                      backgroundImage:
-                                          AssetImage('assets/back.png'),
+                                      backgroundColor:
+                                          Color.fromRGBO(232, 94, 86, 1),
+                                      radius: 20,
+                                      // backgroundImage: AssetImage('assets/back.png'),
+                                      child: Icon(
+                                        Icons.arrow_back,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -128,7 +133,7 @@ class _Event_DetailState extends State<Event_Detail> {
                               // floating: true,
                               expandedHeight: 40.h,
                               backgroundColor: Colors.transparent,
-                              collapsedHeight: 8.5.h,
+                              collapsedHeight: 8.h,
                             ),
                             SliverList(
                                 delegate: SliverChildListDelegate([
@@ -433,7 +438,6 @@ class _Event_DetailState extends State<Event_Detail> {
                       ),
                     ],
                   ),
-                  BottomMenu()
                 ],
               ),
             ),

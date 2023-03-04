@@ -43,66 +43,49 @@ class _ContactState extends State<Contact> {
                   Column(
                     children: [
                       topBar(
-                        pageName: "Contact",
+                        pageName: "Contact Us",
                       ),
-                      Container(
-                        height: 70.h,
+                      Expanded(
+                          child: Container(
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(3.w, 4.h, 3.w, 0),
                           child: Container(
-                            height: MediaQuery.of(context).size.height,
+                            // height: MediaQuery.of(context).size.height,
                             child: GridView.builder(
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                // childAspectRatio: 0.75,
-                                crossAxisCount: 2, mainAxisExtent: 23.85.h,
+                                childAspectRatio: 0.73,
+                                crossAxisCount: 2,
                               ),
                               itemBuilder: (BuildContext context, index) =>
-                                  Padding(
-                                padding: EdgeInsets.all(8.sp),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.white, width: 1),
-                                    borderRadius: BorderRadius.circular(7.sp),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        height: 13.h,
-                                        width: 45.w,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(7.sp),
-                                              topLeft: Radius.circular(7.sp)),
-                                        ),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(7.sp),
-                                              topLeft: Radius.circular(7.sp)),
-                                          child: CachedNetworkImage(
-                                            imageUrl:
-                                                contactItems[index].imageUrl,
-                                            fit: BoxFit.cover,
-                                            height: 20.h,
-                                            width: 45.w,
-                                            errorWidget: (context, url, error) {
-                                              print("Could not load content");
-                                              return ClipRRect(
-                                                borderRadius: BorderRadius.only(
-                                                    topRight:
-                                                        Radius.circular(7.sp),
-                                                    topLeft:
-                                                        Radius.circular(7.sp)),
-                                                child: Image.asset(
-                                                    "assets/placeholder.jpg",
-                                                    height: 20.h,
-                                                    width: 45.w,
-                                                    fit: BoxFit.cover),
-                                              );
-                                            },
-                                            placeholder: (context, url) =>
-                                                ClipRRect(
+                                  Container(
+                                margin: EdgeInsets.all(2.w),
+                                padding: EdgeInsets.all(1.sp),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7.sp),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 45.w,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(7.sp),
+                                            topLeft: Radius.circular(7.sp)),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(7.sp),
+                                            topLeft: Radius.circular(7.sp)),
+                                        child: CachedNetworkImage(
+                                          imageUrl:
+                                              contactItems[index].imageUrl,
+                                          fit: BoxFit.cover,
+                                          height: 15.h,
+                                          width: 45.w,
+                                          errorWidget: (context, url, error) {
+                                            print("Could not load content");
+                                            return ClipRRect(
                                               borderRadius: BorderRadius.only(
                                                   topRight:
                                                       Radius.circular(7.sp),
@@ -113,102 +96,113 @@ class _ContactState extends State<Contact> {
                                                   height: 20.h,
                                                   width: 45.w,
                                                   fit: BoxFit.cover),
-                                            ),
+                                            );
+                                          },
+                                          placeholder: (context, url) =>
+                                              ClipRRect(
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(7.sp),
+                                                topLeft: Radius.circular(7.sp)),
+                                            child: Image.asset(
+                                                "assets/placeholder.jpg",
+                                                height: 20.h,
+                                                width: 45.w,
+                                                fit: BoxFit.cover),
                                           ),
                                         ),
-
-                                        // child: Image(
-                                        //     image: AssetImage(
-                                        //         'assets/baby_enderman.png'),
-                                        //     fit: BoxFit.fitWidth,height: 20.h,)
-                                        // child: FittedBox(
-                                        //   fit: BoxFit.fill,
-                                        //   child: Image.asset(
-                                        //       'assets/baby_enderman.png'),
-                                        // ),
                                       ),
-                                      Container(
-                                        height: 8.2.h,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.only(
-                                              bottomLeft: Radius.circular(8),
-                                              bottomRight: Radius.circular(8)),
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                              height: 0.5.h,
+                                    ),
+                                    Container(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 5.sp),
+                                      // height: 9.h,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(8),
+                                            bottomRight: Radius.circular(8)),
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 0.5.h,
+                                          ),
+                                          Text(
+                                            (contactItems == null ||
+                                                    contactItems.length == 0)
+                                                ? ''
+                                                : '${contactItems[index].name.split('-')[0]}',
+                                            textAlign: TextAlign.center,
+                                            // overflow: TextOverflow.clip,
+                                            style: TextStyle(
+                                              fontSize: 13.sp,
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w600,
                                             ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  (contactItems == null ||
-                                                          contactItems.length ==
-                                                              0)
-                                                      ? ''
-                                                      : '${contactItems[index].name}',
-                                                  textAlign: TextAlign.center,
-                                                  // overflow: TextOverflow.clip,
-                                                  style: TextStyle(
-                                                    fontSize: 11.sp,
-                                                    fontFamily: 'Poppins',
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                )
-                                              ],
+                                          ),
+                                          SizedBox(
+                                            height: 0.5.h,
+                                          ),
+                                          Text(
+                                            (contactItems == null ||
+                                                    contactItems.length == 0)
+                                                ? ''
+                                                : '${contactItems[index].name.split('-')[1]}',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: 11.sp,
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w400,
                                             ),
-                                            SizedBox(
-                                              height: 0.5.h,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                // SizedBox(width: 2.w,),
-                                                InkWell(
-                                                    onTap: () {
-                                                      UrlLauncher.launch(
-                                                          "tel://${contactItems[index].phone}");
-                                                    },
-                                                    child: Container(
-                                                        child: Icon(
-                                                      Icons.phone,
-                                                      color: Colors.black,
-                                                    ))),
-                                                // SizedBox(width: 1.5.w,),
-
-                                                // SizedBox(width: 1.5.w,),
-                                                InkWell(
+                                          ),
+                                          SizedBox(
+                                            height: 0.5.h,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              InkWell(
                                                   onTap: () {
                                                     UrlLauncher.launch(
-                                                        "${contactItems[index].facebook}");
+                                                        "tel://${contactItems[index].phone}");
                                                   },
                                                   child: Container(
-                                                    child: Image(
-                                                      image: AssetImage(
-                                                          'assets/fb.png'),
-                                                      height: 3.h,
-                                                    ),
+                                                      child: Icon(
+                                                    Icons.phone,
+                                                    color: Colors.black,
+                                                  ))),
+                                              // SizedBox(width: 1.5.w,),
+
+                                              // SizedBox(width: 1.5.w,),
+                                              InkWell(
+                                                onTap: () {
+                                                  UrlLauncher.launch(
+                                                      "${contactItems[index].facebook}");
+                                                },
+                                                child: Container(
+                                                  child: Image(
+                                                    image: AssetImage(
+                                                        'assets/fb.png'),
+                                                    height: 3.h,
                                                   ),
                                                 ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                               itemCount: l,
                             ),
                           ),
                         ),
-                      )
+                      ))
                     ],
                   ),
-                  BottomMenu()
                 ],
               ),
             ),
