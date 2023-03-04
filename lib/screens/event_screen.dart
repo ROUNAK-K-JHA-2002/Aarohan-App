@@ -88,9 +88,9 @@ class _Event_DetailState extends State<Event_Detail> {
                                   title: SABT(
                                       child: Container(
                                     width: 70.w,
-                                    margin: EdgeInsets.only(
-                                      bottom: 2.h,
-                                    ),
+                                    // margin: EdgeInsets.only(
+                                    //   bottom: 2.h,
+                                    // ),
                                     child: Text(
                                       "${eventItem.title}",
                                       textAlign: TextAlign.center,
@@ -128,7 +128,7 @@ class _Event_DetailState extends State<Event_Detail> {
                               // floating: true,
                               expandedHeight: 40.h,
                               backgroundColor: Colors.transparent,
-                              collapsedHeight: 9.5.h,
+                              collapsedHeight: 8.5.h,
                             ),
                             SliverList(
                                 delegate: SliverChildListDelegate([

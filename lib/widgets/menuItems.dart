@@ -45,7 +45,8 @@ class _MenuItemsState extends State<MenuItems> {
               margin: EdgeInsets.only(left: 5.w),
               child: Image.asset(
                 widget.leadingImage,
-                fit: BoxFit.fill,
+                fit: BoxFit.contain,
+                height: 5.h,
               ),
             ),
             Container(
@@ -56,7 +57,7 @@ class _MenuItemsState extends State<MenuItems> {
                 widget.itemName,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 3.5.h,
+                    fontSize: 3.h,
                     fontWeight: FontWeight.w500,
                     fontFamily: 'Bebas'),
               ),

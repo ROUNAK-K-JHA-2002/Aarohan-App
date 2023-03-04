@@ -105,7 +105,7 @@ class _BottomMenuState extends State<BottomMenu> {
                                                 Border.all(color: Colors.red),
                                             borderRadius:
                                                 BorderRadius.circular(10)),
-                                        height: 50.h,
+                                        height: 55.h,
                                         width: 90.w,
                                         child: Column(
                                           children: [
@@ -198,6 +198,13 @@ class _BottomMenuState extends State<BottomMenu> {
                                                       children: [
                                                         MenuItems(
                                                           leadingImage:
+                                                              'assets/timer.png',
+                                                          itemName: 'TimeLine',
+                                                          routeName:
+                                                              '/timeline',
+                                                        ),
+                                                        MenuItems(
+                                                          leadingImage:
                                                               'assets/contactUsIcon.png',
                                                           itemName:
                                                               'Contact Us',
@@ -220,14 +227,8 @@ class _BottomMenuState extends State<BottomMenu> {
                                                         MenuItems(
                                                           leadingImage:
                                                               'assets/contributors.png',
-                                                          itemName: 'Sponsers',
+                                                          itemName: 'Sponsors',
                                                           routeName: '/sponsor',
-                                                        ),
-                                                        MenuItems(
-                                                          leadingImage:
-                                                              'assets/contactUsIcon.png',
-                                                          itemName: 'Log Out',
-                                                          routeName: '/logout',
                                                         ),
                                                       ],
                                                     ),
@@ -235,7 +236,9 @@ class _BottomMenuState extends State<BottomMenu> {
                                             ),
                                             MaterialButton(
                                               child: Image.asset(
-                                                  'assets/arrow_down.png'),
+                                                'assets/arrow_down.png',
+                                                height: 2.h,
+                                              ),
                                               onPressed: () {
                                                 setState(() {
                                                   sigmaX = 0;
@@ -309,189 +312,7 @@ class _BottomMenuState extends State<BottomMenu> {
                                                             .center,
                                                     children: [
                                                       Container(
-                                                        height: 10.h,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(15),
-                                                        ),
-                                                        child: (users
-                                                                    .photoURL !=
-                                                                null)
-                                                            ? Image.network(
-                                                                users.photoURL,
-                                                              )
-                                                            : Image.asset(
-                                                                'assets/profile1.png'),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 2.w,
-                                                      ),
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            (users.name != null)
-                                                                ? "${users.name}"
-                                                                : "",
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    'Staat',
-                                                                fontSize: 3.h,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                letterSpacing:
-                                                                    1.2),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 1,
-                                                          ),
-                                                          Text(
-                                                            (users.email !=
-                                                                    null)
-                                                                ? "${users.email}"
-                                                                : "",
-                                                            style: TextStyle(
-                                                                letterSpacing:
-                                                                    1.2,
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 5.w),
-                                                child: Divider(
-                                                  thickness: 1.5,
-                                                  color: Colors.grey.shade600,
-                                                  height: 1.h,
-                                                ),
-                                              ),
-                                              Container(
-                                                height: 25.h,
-                                                width: 90.w,
-                                                child: Scrollbar(
-                                                    child:
-                                                        SingleChildScrollView(
-                                                  child: Column(
-                                                    children: [
-                                                      MenuItems(
-                                                        leadingImage:
-                                                            'assets/game.png',
-                                                        itemName: 'Games',
-                                                        routeName: '/game',
-                                                      ),
-                                                      MenuItems(
-                                                        leadingImage:
-                                                            'assets/list.png',
-                                                        itemName: 'Surprise',
-                                                        routeName: '/about',
-                                                      ),
-                                                      MenuItems(
-                                                        leadingImage:
-                                                            'assets/journo.png',
-                                                        itemName:
-                                                            'Journo Detective',
-                                                        routeName: '/journo',
-                                                      ),
-                                                    ],
-                                                  ),
-                                                )),
-                                              ),
-                                              MaterialButton(
-                                                child: Image.asset(
-                                                    'assets/arrow_down.png'),
-                                                onPressed: () {
-                                                  setState(() {
-                                                    sigmaX = 0;
-                                                    sigmaY = 0;
-                                                    settingIcon =
-                                                        menuBarIconsUnSelected[
-                                                            0];
-                                                    personIcon =
-                                                        menuBarIconsUnSelected[
-                                                            1];
-                                                    consoleIcon =
-                                                        menuBarIconsUnSelected[
-                                                            2];
-                                                  });
-                                                  Navigator.pop(context);
-                                                },
-                                              ),
-                                            ],
-                                          )),
-                                    ],
-                                  ),
-                                );
-                              });
-                        });
-                      },
-                      child: Image.asset(
-                        personIcon,
-                        height: 4.h,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          sigmaX = 5;
-                          sigmaY = 5;
-                          consoleIcon = menuBarIconsSelected[2];
-                          settingIcon = menuBarIconsUnSelected[0];
-                          personIcon = menuBarIconsUnSelected[1];
-
-                          showBottomSheet(
-                              backgroundColor: Colors.transparent,
-                              enableDrag: false,
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Container(
-                                  color: Colors.transparent,
-                                  height: 100.h,
-                                  width: 100.w,
-                                  child: Column(
-                                    children: [
-                                      Expanded(
-                                          child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.transparent),
-                                      )),
-                                      Container(
-                                          margin: EdgeInsets.only(bottom: 10.h),
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              border:
-                                                  Border.all(color: Colors.red),
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          height: 50.h,
-                                          width: 90.w,
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 4.h),
-                                                child: Center(
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Container(
-                                                        height: 10.h,
+                                                        height: 8.h,
                                                         decoration:
                                                             BoxDecoration(
                                                           borderRadius:
@@ -583,19 +404,205 @@ class _BottomMenuState extends State<BottomMenu> {
                                                           ),
                                                           MenuItems(
                                                             leadingImage:
-                                                                'assets/leaderboard.png',
-                                                            itemName:
-                                                                'Leaderboard',
+                                                                'assets/appExitIcon.png',
+                                                            itemName: 'Log Out',
                                                             routeName:
-                                                                '/leaderboard',
+                                                                '/logout',
                                                           ),
+                                                        ],
+                                                      ),
+                                                    )),
+                                              ),
+                                              MaterialButton(
+                                                child: Image.asset(
+                                                    'assets/arrow_down.png'),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    sigmaX = 0;
+                                                    sigmaY = 0;
+                                                    settingIcon =
+                                                        menuBarIconsUnSelected[
+                                                            0];
+                                                    personIcon =
+                                                        menuBarIconsUnSelected[
+                                                            1];
+                                                    consoleIcon =
+                                                        menuBarIconsUnSelected[
+                                                            2];
+                                                  });
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ],
+                                          )),
+                                    ],
+                                  ),
+                                );
+                              });
+                        });
+                      },
+                      child: Image.asset(
+                        personIcon,
+                        height: 4.h,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          sigmaX = 5;
+                          sigmaY = 5;
+                          consoleIcon = menuBarIconsSelected[2];
+                          settingIcon = menuBarIconsUnSelected[0];
+                          personIcon = menuBarIconsUnSelected[1];
+
+                          showBottomSheet(
+                              backgroundColor: Colors.transparent,
+                              enableDrag: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Container(
+                                  color: Colors.transparent,
+                                  height: 100.h,
+                                  width: 100.w,
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                          child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.transparent),
+                                      )),
+                                      Container(
+                                          margin: EdgeInsets.only(bottom: 10.h),
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              border:
+                                                  Border.all(color: Colors.red),
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          height: 50.h,
+                                          width: 90.w,
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 4.h),
+                                                child: Center(
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Container(
+                                                        height: 8.h,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                        ),
+                                                        child: (users
+                                                                    .photoURL !=
+                                                                null)
+                                                            ? Image.network(
+                                                                users.photoURL,
+                                                              )
+                                                            : Image.asset(
+                                                                'assets/profile1.png'),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 2.w,
+                                                      ),
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            (users.name != null)
+                                                                ? "${users.name}"
+                                                                : "",
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    'Staat',
+                                                                fontSize: 3.h,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                letterSpacing:
+                                                                    1.2),
+                                                          ),
+                                                          SizedBox(
+                                                            height: 1,
+                                                          ),
+                                                          Text(
+                                                            (users.email !=
+                                                                    null)
+                                                                ? "${users.email}"
+                                                                : "",
+                                                            style: TextStyle(
+                                                                letterSpacing:
+                                                                    1.2,
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                          ),
+                                                        ],
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 5.w),
+                                                child: Divider(
+                                                  thickness: 1.5,
+                                                  color: Colors.grey.shade600,
+                                                  height: 1.h,
+                                                ),
+                                              ),
+                                              Container(
+                                                height: 25.h,
+                                                width: 90.w,
+                                                child: Scrollbar(
+                                                    thickness: 2.w,
+                                                    radius: Radius.circular(15),
+                                                    thumbVisibility: true,
+                                                    child:
+                                                        SingleChildScrollView(
+                                                      child: Column(
+                                                        children: [
+                                                          // MenuItems(
+                                                          //   leadingImage:
+                                                          //       'assets/leaderboard.png',
+                                                          //   itemName:
+                                                          //       'Leaderboard',
+                                                          //   routeName:
+                                                          //       '/leaderboard',
+                                                          // ),
                                                           MenuItems(
                                                             leadingImage:
-                                                                'assets/timer.png',
+                                                                'assets/game.png',
+                                                            itemName: 'Games',
+                                                            routeName: '/game',
+                                                          ),
+                                                          // MenuItems(
+                                                          //   leadingImage:
+                                                          //       'assets/list.png',
+                                                          //   itemName:
+                                                          //       'Surprise',
+                                                          //   routeName: '/about',
+                                                          // ),
+                                                          MenuItems(
+                                                            leadingImage:
+                                                                'assets/journo.png',
                                                             itemName:
-                                                                'TimeLine',
+                                                                'Journo Detective',
                                                             routeName:
-                                                                '/timeline',
+                                                                '/journo',
                                                           ),
                                                         ],
                                                       ),

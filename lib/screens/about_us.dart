@@ -66,8 +66,9 @@ class _AboutState extends State<About> {
                       )
                     ],
                   ),
-                  BottomMenu()
+                  // BottomMenu()
                 ],
+                
               ),
             ),
           ),

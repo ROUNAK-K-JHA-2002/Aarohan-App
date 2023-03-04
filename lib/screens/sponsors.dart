@@ -56,7 +56,7 @@ class _SponsorsState extends State<Sponsors> {
                     Column(
                       children: [
                         topBar(
-                          pageName: "Sponsers",
+                          pageName: "Sponsors",
                         ),
                         Container(
                           height: 70.h,
@@ -124,7 +124,7 @@ class _SponsorsState extends State<Sponsors> {
                         )
                       ],
                     ),
-                    BottomMenu()
+                    // BottomMenu()
                   ],
                 ),
               ),

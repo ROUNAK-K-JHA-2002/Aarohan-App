@@ -220,9 +220,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                     child: Container(
                                       decoration: BoxDecoration(
                                           color: (selectedIndex == index)
-                                              ? Color.fromARGB(
-                                                  255, 16, 112, 106)
-                                              : Color.fromARGB(255, 34, 9, 136),
+                                              ? Color.fromARGB(255, 157, 11, 3)
+                                              : Color.fromRGBO(232, 94, 86, 1),
                                           borderRadius:
                                               BorderRadius.circular(7.sp)),
                                       alignment: Alignment.center,
