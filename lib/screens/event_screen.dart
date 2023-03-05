@@ -7,7 +7,6 @@ import 'package:aarohan_app/models/user.dart';
 import 'package:aarohan_app/models/event.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:aarohan_app/widgets/custom_gesture_detector.dart';
-import 'package:aarohan_app/widgets/menu_widget.dart';
 import 'package:aarohan_app/sliver_components/SABT.dart';
 import 'dart:ui';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;

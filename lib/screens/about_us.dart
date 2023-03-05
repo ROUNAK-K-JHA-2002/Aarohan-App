@@ -4,7 +4,6 @@ import 'package:aarohan_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:from_css_color/from_css_color.dart';
-import 'package:aarohan_app/widgets/menu_widget.dart';
 import 'package:flutter/services.dart';
 
 class About extends StatefulWidget {

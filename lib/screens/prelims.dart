@@ -1,7 +1,6 @@
 import 'package:aarohan_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
 import 'package:aarohan_app/widgets/custom_gesture_detector.dart';
-import 'package:aarohan_app/widgets/menu_widget.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:sizer/sizer.dart';
 import 'package:aarohan_app/models/prelim.dart';

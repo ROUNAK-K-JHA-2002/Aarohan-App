@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:aarohan_app/widgets/menuItems.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,8 +44,23 @@ class _BottomMenuState extends State<BottomMenu> {
   String settingIcon = 'assets/menuBarSettings0.png';
   String personIcon = 'assets/menuBarPerson0.png';
   String consoleIcon = 'assets/menuBarConsole0.png';
+
+  final _firestore = FirebaseFirestore.instance;
+  String JDTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    _firestore.collection("Events").doc("Journo Detective").get().then((value) {
+      setState(() {
+        JDTitle = value["title"];
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    // String EventName = db
     getuser();
     List<ComingItem> comingItems = Provider.of<List<ComingItem>>(context);
     Users users;
@@ -602,19 +618,12 @@ class _BottomMenuState extends State<BottomMenu> {
                                                           SingleChildScrollView(
                                                         child: Column(
                                                           children: [
-                                                            // MenuItems(
-                                                            //   leadingImage:
-                                                            //       'assets/leaderboard.png',
-                                                            //   itemName:
-                                                            //       'Leaderboard',
-                                                            //   routeName:
-                                                            //       '/leaderboard',
-                                                            // ),
                                                             MenuItems(
                                                               leadingImage:
                                                                   'assets/journo.png',
                                                               itemName:
-                                                                  'Journo Detective',
+                                                                  // 'Journo Detective',
+                                                                  JDTitle,
                                                               routeName:
                                                                   '/journo',
                                                             ),

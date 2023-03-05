@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:aarohan_app/models/schedule.dart';
 import 'package:aarohan_app/services/sort_timeline.dart';
 import 'package:sizer/sizer.dart';
-import 'package:aarohan_app/widgets/menu_widget.dart';
 import 'package:aarohan_app/widgets/custom_gesture_detector.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:aarohan_app/widgets/timeline_list.dart';
