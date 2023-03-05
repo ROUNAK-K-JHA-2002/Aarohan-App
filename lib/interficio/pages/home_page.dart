@@ -29,7 +29,7 @@ String apiUrl = "jdapi.nitdgplug.org";
 bool header = false;
 bool intro = false;
 ValueNotifier<double> lat, long;
-List _markers = [];
+List<Marker> _markers = [];
 int x = 0;
 double mapZoom = 15.0;
 Completer<GoogleMapController> mapController = Completer();
@@ -941,29 +941,31 @@ class _HomePageState extends State<HomePage>
               desiredAccuracy: LocationAccuracy.high);
           lat.value = currentPosition.latitude;
           long.value = currentPosition.longitude;
-          if (x == 0) {
-            BitmapDescriptor.fromAssetImage(
-                    ImageConfiguration(devicePixelRatio: 2.5),
-                    'assets/detective.png')
-                .then((pin) {
-              _markers.add(
-                Marker(
-                    markerId: MarkerId(
-                      "start",
-                    ),
-                    position: LatLng(lat.value, long.value),
-                    consumeTapEvents: true,
-                    infoWindow: InfoWindow(
-                        title:
-                            "${LatLng(lat.value, long.value).latitude}°N,  ${LatLng(lat.value, long.value).longitude}°E"),
-                    icon: pin),
-              );
-            });
-
-            x++;
+          for (int i = 0; i < _markers.length; i++) {
+            if (_markers[i].markerId == MarkerId("start")) {
+              _markers.removeAt(i);
+            }
           }
+          BitmapDescriptor.fromAssetImage(
+                  ImageConfiguration(devicePixelRatio: 2.5),
+                  'assets/detective.png')
+              .then((pin) {
+            _markers.add(
+              Marker(
+                  markerId: MarkerId(
+                    "start",
+                  ),
+                  position: LatLng(lat.value, long.value),
+                  consumeTapEvents: true,
+                  infoWindow: InfoWindow(
+                      title:
+                          "${LatLng(lat.value, long.value).latitude}°N,  ${LatLng(lat.value, long.value).longitude}°E"),
+                  icon: pin),
+            );
+          });
         }
-        await Future.delayed(Duration(seconds: 30));
+        print("MARKER ${_markers.length}");
+        await Future.delayed(Duration(seconds: 15));
       }
     }
 
