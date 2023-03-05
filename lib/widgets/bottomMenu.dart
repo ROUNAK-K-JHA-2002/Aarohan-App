@@ -220,7 +220,7 @@ class _BottomMenuState extends State<BottomMenu> {
                                                           ),
                                                           MenuItems(
                                                             leadingImage:
-                                                                'assets/contributors.png',
+                                                                'assets/sponsor.png',
                                                             itemName:
                                                                 'Sponsors',
                                                             routeName:
@@ -247,9 +247,9 @@ class _BottomMenuState extends State<BottomMenu> {
                                                     )),
                                               ),
                                               MaterialButton(
-                                                child: Image.asset(
-                                                  'assets/arrow_down.png',
-                                                  height: 2.h,
+                                                child: Icon(
+                                                  Icons.expand_more,
+                                                  size: 25.sp,
                                                 ),
                                                 onPressed: () {
                                                   setState(() {
@@ -424,7 +424,7 @@ class _BottomMenuState extends State<BottomMenu> {
                                                             ),
                                                             MenuItems(
                                                               leadingImage:
-                                                                  'assets/appExitIcon.png',
+                                                                  Icons.logout,
                                                               itemName:
                                                                   'Log Out',
                                                               routeName:
@@ -435,8 +435,10 @@ class _BottomMenuState extends State<BottomMenu> {
                                                       )),
                                                 ),
                                                 MaterialButton(
-                                                  child: Image.asset(
-                                                      'assets/arrow_down.png'),
+                                                  child: Icon(
+                                                    Icons.expand_more,
+                                                    size: 25.sp,
+                                                  ),
                                                   onPressed: () {
                                                     setState(() {
                                                       sigmaX = 0;
@@ -623,20 +625,23 @@ class _BottomMenuState extends State<BottomMenu> {
                                                               routeName:
                                                                   '/game',
                                                             ),
-                                                            // MenuItems(
-                                                            //   leadingImage:
-                                                            //       'assets/list.png',
-                                                            //   itemName:
-                                                            //       'Surprise',
-                                                            //   routeName: '/about',
-                                                            // ),
+                                                            MenuItems(
+                                                              leadingImage:
+                                                                  'assets/prelims.png',
+                                                              itemName:
+                                                                  'Prelims',
+                                                              routeName:
+                                                                  '/prelims',
+                                                            ),
                                                           ],
                                                         ),
                                                       )),
                                                 ),
                                                 MaterialButton(
-                                                  child: Image.asset(
-                                                      'assets/arrow_down.png'),
+                                                  child: Icon(
+                                                    Icons.expand_more,
+                                                    size: 25.sp,
+                                                  ),
                                                   onPressed: () {
                                                     setState(() {
                                                       sigmaX = 0;

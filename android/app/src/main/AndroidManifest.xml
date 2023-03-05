@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.aarohan.aarohanapp">
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
    <application
         android:label="Aarohan"
         android:icon="@mipmap/ic_launcher">
@@ -36,7 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-       <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAWsWXAYXZx6IXI5axkk8wf1E1ck9O_FbM"/>
+       <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDzSgJFOZy-VN1JYWrdWe259z2NA-Rp77A"/>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

@@ -49,7 +49,7 @@ class _AuthPageState extends State<AuthPage> {
 
   bool _isLoading = false;
 
-  String apiUrl = "interficio.nitdgplug.org";
+  String apiUrl = "jdapi.nitdgplug.org";
 
   AuthMode _authmode = AuthMode.login;
 

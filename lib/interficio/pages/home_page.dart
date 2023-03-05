@@ -5,13 +5,14 @@ import 'dart:convert';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:location/location.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:aarohan_app/util/inner_drawer.dart';
+import '../currentLocation.dart';
 import 'fullscreen_image.dart';
 
 ValueNotifier<bool> updateMap = ValueNotifier(false);
@@ -24,7 +25,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState(user);
 }
 
-String apiUrl = "interficio.nitdgplug.org";
+String apiUrl = "jdapi.nitdgplug.org";
 
 bool header = false;
 bool intro = false;
@@ -34,7 +35,6 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   final Map<String, dynamic> user;
   _HomePageState(this.user);
-
   // var currentLocation = LocationData;
   // var location = Location();
   var accuracy;
@@ -60,28 +60,6 @@ class _HomePageState extends State<HomePage>
 
   bool _isLoading = false;
 
-  // void getLocation() async {
-  //   PermissionStatus perm = await location.hasPermission();
-  //   print(perm);
-  //   LocationData currentLocation = await location.getLocation();
-  //   location.changeSettings(accuracy: LocationAccuracy.HIGH);
-  //   setState(
-  //     () {
-  //       location.onLocationChanged().listen(
-  //         (LocationData currentLocation) {
-  //           setState(
-  //             () {
-  //               lat = currentLocation.latitude;
-  //               long = currentLocation.longitude;
-  //               accuracy = currentLocation.accuracy;
-  //             },
-  //           );
-  //         },
-  //       );
-  //     },
-  //   );
-  // }
-
   String getSpaces(int index) {
     int noOfSpaces = 2 - (((index / 10).toInt() > 0) ? 2 : 0);
     String spaces = "";
@@ -91,7 +69,25 @@ class _HomePageState extends State<HomePage>
     return spaces;
   }
 
-//this function retrieves the data of the current level of the user
+  Future getCurrentLocation() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      print("Location Permision Denied");
+      LocationPermission askPermission = await Geolocator.requestPermission();
+    } else {
+      Position currentPosition = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      print("Longi" + currentPosition.longitude.toString());
+      setState(() {
+        lat.value = currentPosition.latitude;
+        long.value = currentPosition.longitude;
+      });
+      print("Latit" + currentPosition.latitude.toString());
+    }
+  }
+
+// this function retrieves the data of the current level of the user
   Future getLevelData() async {
     setState(() {
       _isLoading = true;
@@ -208,9 +204,10 @@ class _HomePageState extends State<HomePage>
     if (finalAns["success"] == false)
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: Duration(seconds: 1),
-          content: Text("Answer already submitted once",style: TextStyle(
-              color: Colors.black
-          ),)));
+          content: Text(
+            "Answer already submitted once",
+            style: TextStyle(color: Colors.black),
+          )));
     // else if (finalAns["success"] == true) {
     //   SharedPreferences prefs = await SharedPreferences.getInstance();
     //   prefs.setString("success", "true");
@@ -338,8 +335,8 @@ class _HomePageState extends State<HomePage>
 
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: Duration(seconds: 1),
-        content: Text(data["success"] == true ? "correct location" : "try again")
-    ));
+        content:
+            Text(data["success"] == true ? "correct location" : "try again")));
     // }
     setState(() {
       getLevelData().then((onValue) {
@@ -933,6 +930,30 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    Future getCurrentLocation() async {
+      while (true) {
+        LocationPermission permission = await Geolocator.checkPermission();
+        if (permission == LocationPermission.denied ||
+            permission == LocationPermission.deniedForever) {
+          print("Location Permision Denied");
+          LocationPermission askPermission =
+              await Geolocator.requestPermission();
+        } else {
+          Position currentPosition = await Geolocator.getCurrentPosition(
+              desiredAccuracy: LocationAccuracy.best);
+          print("Longi" + currentPosition.longitude.toString());
+
+          lat.value = currentPosition.latitude;
+          long.value = currentPosition.longitude;
+
+          print("Latit" + currentPosition.latitude.toString());
+        }
+        await Future.delayed(Duration(seconds: 30));
+      }
+    }
+
+    getCurrentLocation();
+    print(lat.value.toString() + "sjjssgds");
     var deviceSize = MediaQuery.of(context).size;
 
 //animation using animatedpositioned. mean position toggle values
@@ -1007,10 +1028,11 @@ class _HomePageState extends State<HomePage>
                           //   },
                           // ),
                           ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: const Color(0xFFFF9e02),
-                              padding: const EdgeInsets.symmetric(vertical: 10.0),
-                            ),
+                              style: ElevatedButton.styleFrom(
+                                primary: const Color(0xFFFF9e02),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10.0),
+                              ),
                               child: const Text(
                                 "PROCEED",
                                 style: TextStyle(
@@ -1024,8 +1046,7 @@ class _HomePageState extends State<HomePage>
                                   intro = true;
                                   setIntro();
                                 });
-                              }
-                          )
+                              })
                         ],
                       ),
                     ),
@@ -1387,67 +1408,68 @@ class _HomePageState extends State<HomePage>
                                                       ),
                                                     )
                                                   :
-                                              // OutlineButton(
-                                              //         borderSide:
-                                              //             const BorderSide(
-                                              //           color: Color(
-                                              //               0xFFa94064), //Color of the border
-                                              //           style: BorderStyle
-                                              //               .solid, //Style of the border
-                                              //           width:
-                                              //               1, //width of the border
-                                              //         ),
-                                              //         color: const Color(
-                                              //             0xFF0059B3),
-                                              //         child: const Text(
-                                              //           "SUBMIT ANSWER",
-                                              //           style: TextStyle(
-                                              //             fontFamily:
-                                              //                 'Mysterious',
-                                              //             // fontWeight:
-                                              //             //     FontWeight.bold,
-                                              //             fontSize: 20.0,
-                                              //           ),
-                                              //         ),
-                                              //         onPressed: () {
-                                              //           submitFinalAnswer(
-                                              //               _answerFieldController
-                                              //                   .value.text);
-                                              //           _answerFieldController
-                                              //               .clear();
-                                              //         },
-                                              //       ),
-                                              OutlinedButton(
-                                                  onPressed: () {
-                                                    submitFinalAnswer(
+                                                  // OutlineButton(
+                                                  //         borderSide:
+                                                  //             const BorderSide(
+                                                  //           color: Color(
+                                                  //               0xFFa94064), //Color of the border
+                                                  //           style: BorderStyle
+                                                  //               .solid, //Style of the border
+                                                  //           width:
+                                                  //               1, //width of the border
+                                                  //         ),
+                                                  //         color: const Color(
+                                                  //             0xFF0059B3),
+                                                  //         child: const Text(
+                                                  //           "SUBMIT ANSWER",
+                                                  //           style: TextStyle(
+                                                  //             fontFamily:
+                                                  //                 'Mysterious',
+                                                  //             // fontWeight:
+                                                  //             //     FontWeight.bold,
+                                                  //             fontSize: 20.0,
+                                                  //           ),
+                                                  //         ),
+                                                  //         onPressed: () {
+                                                  //           submitFinalAnswer(
+                                                  //               _answerFieldController
+                                                  //                   .value.text);
+                                                  //           _answerFieldController
+                                                  //               .clear();
+                                                  //         },
+                                                  //       ),
+                                                  OutlinedButton(
+                                                      onPressed: () {
+                                                        submitFinalAnswer(
+                                                            _answerFieldController
+                                                                .value.text);
                                                         _answerFieldController
-                                                            .value.text);
-                                                    _answerFieldController
-                                                        .clear();
-                                                  },
-                                                child: const Text(
-                                                  "SUBMIT ANSWER",
-                                                  style: TextStyle(
-                                                    fontFamily:
-                                                    'Mysterious',
-                                                    // fontWeight:
-                                                    //     FontWeight.bold,
-                                                    fontSize: 20.0,
-                                                  ),
-                                                ),
-                                                style: OutlinedButton.styleFrom(
-                                                  side:  const BorderSide(
-                                                    color: Color(
-                                                        0xFFa94064), //Color of the border
-                                                    style: BorderStyle
-                                                        .solid, //Style of the border
-                                                    width:
-                                                    1, //width of the border
-                                                  ),
-                                                  primary: const Color(
-                                                      0xFF0059B3),
-                                                ),
-                                              )
+                                                            .clear();
+                                                      },
+                                                      child: const Text(
+                                                        "SUBMIT ANSWER",
+                                                        style: TextStyle(
+                                                          fontFamily:
+                                                              'Mysterious',
+                                                          // fontWeight:
+                                                          //     FontWeight.bold,
+                                                          fontSize: 20.0,
+                                                        ),
+                                                      ),
+                                                      style: OutlinedButton
+                                                          .styleFrom(
+                                                        side: const BorderSide(
+                                                          color: Color(
+                                                              0xFFa94064), //Color of the border
+                                                          style: BorderStyle
+                                                              .solid, //Style of the border
+                                                          width:
+                                                              1, //width of the border
+                                                        ),
+                                                        primary: const Color(
+                                                            0xFF0059B3),
+                                                      ),
+                                                    )
                                             ],
                                           )
                                         : ListView(
@@ -1528,7 +1550,7 @@ class _HomePageState extends State<HomePage>
                                                                 ),
                                                               ),
                                                               Text(
-                                                                "${lat.value == 0.0 ? 'None' : lat.value.toStringAsFixed(5) + ' °N'}",
+                                                                "${lat.value == 0.0 ? 'Loading..' : lat.value.toStringAsFixed(5) + ' °N'}",
                                                                 style:
                                                                     TextStyle(
                                                                   fontFamily:
@@ -1563,7 +1585,7 @@ class _HomePageState extends State<HomePage>
                                                                 ),
                                                               ),
                                                               Text(
-                                                                "${long.value == 0.0 ? 'None' : long.value.toStringAsFixed(5) + ' °E'}",
+                                                                "${long.value == 0.0 ? 'Loading..' : long.value.toStringAsFixed(5) + ' °E'}",
                                                                 style:
                                                                     TextStyle(
                                                                   fontFamily:
@@ -2018,7 +2040,7 @@ class _GameMapState extends State<GameMap> {
             child: Center(
               child: FittedBox(
                 child: Text(
-                  "${currentPosition.latitude.toStringAsFixed(3)}°N,  ${currentPosition.longitude.toStringAsFixed(3)}°E",
+                  "${lat.value.toStringAsFixed(3)}°N,  ${long.value.toStringAsFixed(3)}°E",
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),

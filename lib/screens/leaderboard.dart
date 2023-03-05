@@ -38,6 +38,7 @@ class _LeaderboardState extends State<Leaderboard> {
     Eurekoin.getUserEurekoin().then((value) {
       setState(() {
         _coins = value;
+        print(_coins);
       });
     });
     Eurekoin.getReferralCode().then((value) {
@@ -530,7 +531,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                           width: 2.w,
                                         ),
                                         Text(
-                                          (_coins != null) ? "$_coins" : "",
+                                          (_coins != null) ? "$_coins" : "0",
                                           style: TextStyle(
                                               letterSpacing: 1.1,
                                               fontFamily: 'Poppins',
@@ -541,15 +542,15 @@ class _LeaderboardState extends State<Leaderboard> {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        Navigator.popAndPushNamed(
+                                        Navigator.pushNamed(
                                             context, '/transaction');
                                       },
                                       child: Container(
-                                        margin: EdgeInsets.only(right: 5.w),
+                                        margin: EdgeInsets.only(left: 3.w),
                                         child:
                                             Image.asset('assets/Pay icon.png'),
-                                        height: height * 0.04,
-                                        width: width * 0.09,
+                                        height: height * 0.05,
+                                        width: width * 0.06,
                                       ),
                                     ),
                                   ],
@@ -599,13 +600,10 @@ class _LeaderboardState extends State<Leaderboard> {
                                           padding: EdgeInsets.fromLTRB(
                                               5.w, 1.h, 2.w, 1.h),
                                           decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  color: Colors.white,
-                                                  width: 0.2.w),
-                                              borderRadius:
-                                                  BorderRadius.circular(15.sp),
-                                              color: fromCssColor('#E2F5FF')
-                                                  .withOpacity(0.25)),
+                                            borderRadius:
+                                                BorderRadius.circular(15.sp),
+                                            color: Colors.white,
+                                          ),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -615,7 +613,6 @@ class _LeaderboardState extends State<Leaderboard> {
                                                   Text(
                                                     "${index + 1}.",
                                                     style: TextStyle(
-                                                        color: Colors.white,
                                                         fontFamily: 'Poppins',
                                                         fontSize: 13.sp,
                                                         fontWeight:
@@ -629,7 +626,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                                         NetworkImage(
                                                       '${snapshot.data[index]['imageURL']}',
                                                     ),
-                                                    radius: 12.sp,
+                                                    radius: 15.sp,
                                                   ),
                                                   SizedBox(
                                                     width: 2.w,
@@ -644,11 +641,9 @@ class _LeaderboardState extends State<Leaderboard> {
                                                         Text(
                                                           "${snapshot.data[index]['username']}",
                                                           style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
                                                               fontFamily:
                                                                   'Poppins',
-                                                              fontSize: 11.sp,
+                                                              fontSize: 12.sp,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500),
@@ -662,14 +657,13 @@ class _LeaderboardState extends State<Leaderboard> {
                                                 child: Row(
                                                   children: [
                                                     Image.asset(
-                                                        'assets/eurekoin.png',
+                                                        'assets/Eurekoin_orange.jpg',
                                                         height: height * 0.04,
                                                         width: width * 0.09),
                                                     SizedBox(width: 1.w),
                                                     Text(
                                                       "${snapshot.data[index]['coins']}",
                                                       style: TextStyle(
-                                                          color: Colors.white,
                                                           letterSpacing: 0.5,
                                                           fontFamily: 'Poppins',
                                                           fontSize: 13.sp,

@@ -1,4 +1,3 @@
-import 'package:aarohan_app/game/game_start.dart';
 import 'package:aarohan_app/interficio/interficio.dart';
 import 'package:aarohan_app/models/event.dart';
 import 'package:aarohan_app/resources/firestore_provider.dart';
@@ -103,6 +102,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(FirebaseAuth.instance.currentUser);
     return MultiProvider(
       providers: [
         StreamProvider<List<EventItem>>(
@@ -139,11 +139,9 @@ class _MyAppState extends State<MyApp> {
           '/eurekoin': (context) => Eurekoin_Home(),
           '/contact': (context) => Contact(),
           '/coming': (context) => Coming(),
-          '/game': (context) => MyHomePage("Dino Game"),
           '/journo': (context) => Interfecio(),
           '/transaction': (context) => Transaction(),
           '/prelims': (context) => Prelims(),
-          '/ar': (context) => AR()
         },
       ),
     );

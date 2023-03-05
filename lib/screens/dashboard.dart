@@ -4,14 +4,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:googleapis/admin/directory_v1.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:aarohan_app/widgets/menu_widget.dart';
 import 'package:aarohan_app/models/event.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:carousel_slider/carousel_controller.dart';
-import 'package:bottom_drawer/bottom_drawer.dart';
+// import 'package:bottom_drawer/bottom_drawer.dart';
 import 'package:aarohan_app/widgets/custom_gesture_detector.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:aarohan_app/models/user.dart';
@@ -47,7 +46,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   int x = 0;
   int selectedIndex;
   CarouselController buttonCarouselController = CarouselController();
-  BottomDrawerController controller = BottomDrawerController();
+
   List<EventItem> arr = [];
   List<EventItem> _foundUsers = [];
   String day = "";

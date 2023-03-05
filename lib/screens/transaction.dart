@@ -27,6 +27,7 @@ class _TransactionState extends State<Transaction> {
     fetchTransactions().then((value) {
       setState(() {
         _trans = value;
+        print("trans = $_trans");
       });
     });
     super.initState();
@@ -41,7 +42,6 @@ class _TransactionState extends State<Transaction> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    double threshold = 100;
     return Sizer(
       builder: (context, orientation, deviceType) {
         return SafeArea(
@@ -186,8 +186,8 @@ class _TransactionState extends State<Transaction> {
                                                       child: Container(
                                                         decoration: BoxDecoration(
                                                             border: Border.all(
-                                                                color: Colors
-                                                                    .white,
+                                                                color:
+                                                                    Colors.blue,
                                                                 width: 0.2.w),
                                                             borderRadius:
                                                                 BorderRadius
@@ -198,24 +198,42 @@ class _TransactionState extends State<Transaction> {
                                                                 .withOpacity(
                                                                     0.3)),
                                                         child: Container(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  vertical:
-                                                                      1.h),
-                                                          child: Center(
-                                                            child: Text(
-                                                              _foundUsers[index]
-                                                                  [0],
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                fontSize: 12.sp,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    vertical:
+                                                                        1.h),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              children: [
+                                                                Container(
+                                                                  height: 35.sp,
+                                                                  child: ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              20),
+                                                                      child: Image.network(
+                                                                          _foundUsers[index]
+                                                                              [
+                                                                              2])),
+                                                                ),
+                                                                Text(
+                                                                  _foundUsers[
+                                                                      index][0],
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'Poppins',
+                                                                    fontSize:
+                                                                        12.sp,
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                  width: 20.sp,
+                                                                ),
+                                                              ],
+                                                            )),
                                                       ),
                                                     ),
                                                   ),
@@ -367,158 +385,146 @@ class _TransactionState extends State<Transaction> {
                                             return Padding(
                                               padding: EdgeInsets.fromLTRB(
                                                   3.w, 1.h, 3.w, 1.h),
-                                              child: ClipRect(
-                                                child: BackdropFilter(
-                                                  filter: ImageFilter.blur(
-                                                      sigmaX: 1.5, sigmaY: 1.5),
-                                                  child: Container(
-                                                      padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              3.w,
-                                                              1.h,
-                                                              3.w,
-                                                              1.h),
-                                                      decoration: BoxDecoration(
-                                                          border: Border.all(
-                                                              color:
-                                                                  Colors.white,
-                                                              width: 0.2.w),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      15.sp),
-                                                          color: fromCssColor(
-                                                                  '#E2F5FF')
-                                                              .withOpacity(
-                                                                  0.25)),
-                                                      child: Column(
+                                              child: Container(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      3.w, 1.h, 3.w, 0.h),
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          color: Colors.blue,
+                                                          width: 0.2.w),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15.sp),
+                                                      color: fromCssColor(
+                                                              '#E2F5FF')
+                                                          .withOpacity(0.25)),
+                                                  child: Column(
+                                                    children: [
+                                                      Align(
+                                                        child: Text(
+                                                          (int.parse(_trans[index]
+                                                                          [0]
+                                                                      .toString()) >
+                                                                  0)
+                                                              ? "From: ${_trans[index][1]}"
+                                                              : "To: ${_trans[index][1]}",
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 10.sp,
+                                                          ),
+                                                        ),
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                      ),
+                                                      // SizedBox(
+                                                      //   height: 0.5.h,
+                                                      // ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
                                                         children: [
-                                                          Align(
-                                                            child: Text(
-                                                              (int.parse(_trans[index]
-                                                                              [
-                                                                              0]
-                                                                          .toString()) >
-                                                                      0)
-                                                                  ? "From: ${_trans[index][1]}"
-                                                                  : "To: ${_trans[index][1]}",
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                fontSize: 10.sp,
-                                                              ),
-                                                            ),
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                          ),
-                                                          SizedBox(
-                                                            height: 0.5.h,
-                                                          ),
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              (int.parse(_trans[index]
-                                                                              [
-                                                                              0]
-                                                                          .toString()) >
-                                                                      0)
-                                                                  ? Row(
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .center,
-                                                                      children: [
-                                                                        ImageIcon(
-                                                                          AssetImage(
-                                                                              'assets/received.png'),
-                                                                          color:
-                                                                              Colors.greenAccent,
-                                                                        ),
-                                                                        Text(
-                                                                          "RECEIVED",
-                                                                          style: TextStyle(
-                                                                              color: Colors.greenAccent,
-                                                                              fontFamily: 'Poppins',
-                                                                              fontSize: 15.sp,
-                                                                              fontWeight: FontWeight.w500),
-                                                                        ),
-                                                                      ],
-                                                                    )
-                                                                  : Row(
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .center,
-                                                                      children: [
-                                                                        ImageIcon(
-                                                                          AssetImage(
-                                                                              'assets/sent.png'),
-                                                                          color:
-                                                                              Colors.redAccent,
-                                                                        ),
-                                                                        Text(
-                                                                          "SENT",
-                                                                          style: TextStyle(
-                                                                              color: Colors.redAccent,
-                                                                              fontSize: 15.sp,
-                                                                              fontFamily: 'Poppins',
-                                                                              fontWeight: FontWeight.w500),
-                                                                        ),
-                                                                      ],
+                                                          (int.parse(_trans[index]
+                                                                          [0]
+                                                                      .toString()) >
+                                                                  0)
+                                                              ? Row(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    ImageIcon(
+                                                                      AssetImage(
+                                                                          'assets/received.png'),
+                                                                      color: Colors
+                                                                          .greenAccent,
                                                                     ),
-                                                              Row(
-                                                                children: [
-                                                                  Image.asset(
-                                                                      'assets/eurekoin.png',
-                                                                      height:
-                                                                          height *
-                                                                              0.04,
-                                                                      width: width *
-                                                                          0.09),
-                                                                  SizedBox(
-                                                                      width:
-                                                                          1.w),
-                                                                  Text(
-                                                                    "${int.parse((_trans[index][0]).toString()).abs().toString()}",
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        letterSpacing:
-                                                                            0.5,
-                                                                        fontFamily:
-                                                                            'Poppins',
-                                                                        fontSize: 13
-                                                                            .sp,
-                                                                        fontWeight:
-                                                                            FontWeight.w500),
-                                                                  ),
-                                                                ],
+                                                                    Text(
+                                                                      "RECEIVED",
+                                                                      style: TextStyle(
+                                                                          color: Colors
+                                                                              .greenAccent,
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          fontSize: 15
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                  ],
+                                                                )
+                                                              : Row(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    ImageIcon(
+                                                                      AssetImage(
+                                                                          'assets/sent.png'),
+                                                                      color: Colors
+                                                                          .redAccent,
+                                                                    ),
+                                                                    Text(
+                                                                      "SENT",
+                                                                      style: TextStyle(
+                                                                          color: Colors
+                                                                              .redAccent,
+                                                                          fontSize: 15
+                                                                              .sp,
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                          Row(
+                                                            children: [
+                                                              Image.asset(
+                                                                  'assets/Eurekoin_orange.jpg',
+                                                                  height:
+                                                                      height *
+                                                                          0.04,
+                                                                  width: width *
+                                                                      0.09),
+                                                              SizedBox(
+                                                                  width: 1.w),
+                                                              Text(
+                                                                "${int.parse((_trans[index][0]).toString()).abs().toString()}",
+                                                                style: TextStyle(
+                                                                    letterSpacing:
+                                                                        0.5,
+                                                                    fontFamily:
+                                                                        'Poppins',
+                                                                    fontSize:
+                                                                        13.sp,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
                                                               ),
                                                             ],
                                                           ),
-                                                          SizedBox(
-                                                            height: 0.5.h,
-                                                          ),
-                                                          Align(
-                                                            alignment: Alignment
-                                                                .centerRight,
-                                                            child: Text(
-                                                              "${timeago.format(DateTime.parse(_trans[index][2]).toLocal())}",
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                fontSize: 10.sp,
-                                                              ),
-                                                            ),
-                                                          )
                                                         ],
-                                                      )),
-                                                ),
-                                              ),
+                                                      ),
+
+                                                      Align(
+                                                        alignment: Alignment
+                                                            .centerRight,
+                                                        child: Text(
+                                                          "${timeago.format(DateTime.parse(_trans[index][2]).toLocal())}",
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 10.sp,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 0.5.h,
+                                                      ),
+                                                    ],
+                                                  )),
                                             );
                                           },
                                         )

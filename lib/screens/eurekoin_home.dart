@@ -88,6 +88,7 @@ class _Eurekoin_HomeState extends State<Eurekoin_Home> {
                   ),
                   InkWell(
                     onTap: () async {
+                      // print(Eurekoin.isEurekoinUserRegistered());
                       await Eurekoin.registerEurekoinUser(
                           editingController.text);
                       await setEurekoinRegistered();
