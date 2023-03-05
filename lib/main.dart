@@ -1,11 +1,14 @@
+import 'package:aarohan_app/game/gamemain.dart';
 import 'package:aarohan_app/interficio/interficio.dart';
 import 'package:aarohan_app/models/event.dart';
 import 'package:aarohan_app/resources/firestore_provider.dart';
 import 'package:aarohan_app/screens/dashboard.dart';
 import 'package:aarohan_app/screens/login.dart';
+import 'package:aarohan_app/screens/main_menu.dart';
 import 'package:aarohan_app/services/auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -49,7 +52,14 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+<<<<<<< HEAD
   await FlutterConfig.loadEnvVariables();
+=======
+  await Flame.device.fullScreen();
+
+  // // Initialize hive.
+  await initHive();
+>>>>>>> d803f81 ([ADD] Game-Spacescapes)
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp();
 
@@ -132,6 +142,7 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '/eventpage': (context) => Event_Detail(),
           '/login': (context) => Login(),
+          '/game': (context) => gamerunner(),
           '/timeline': (context) => Timeline(),
           '/home': (context) => Dashboard(),
           '/leaderboard': (context) => Leaderboard(),
