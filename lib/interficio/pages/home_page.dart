@@ -12,7 +12,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:aarohan_app/util/inner_drawer.dart';
-import '../currentLocation.dart';
 import 'fullscreen_image.dart';
 
 ValueNotifier<bool> updateMap = ValueNotifier(false);
@@ -30,6 +29,10 @@ String apiUrl = "jdapi.nitdgplug.org";
 bool header = false;
 bool intro = false;
 ValueNotifier<double> lat, long;
+List _markers = [];
+int x = 0;
+double mapZoom = 15.0;
+Completer<GoogleMapController> mapController = Completer();
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
@@ -313,12 +316,7 @@ class _HomePageState extends State<HomePage>
     setState(() {
       _isLoading = true;
     });
-    // if (accuracy > 25) {
-    //   _scaffoldKey.currentState.showSnackBar(SnackBar(
-    //     content: Text("location not accurate enough. please try again"),
-    //     duration: Duration(seconds: 1),
-    //   ));
-    // } else {
+
     http.Response response = await http.post(
       Uri.parse("https://$apiUrl/api/submit/location/"),
       headers: {
@@ -940,13 +938,30 @@ class _HomePageState extends State<HomePage>
               await Geolocator.requestPermission();
         } else {
           Position currentPosition = await Geolocator.getCurrentPosition(
-              desiredAccuracy: LocationAccuracy.best);
-          print("Longi" + currentPosition.longitude.toString());
-
+              desiredAccuracy: LocationAccuracy.high);
           lat.value = currentPosition.latitude;
           long.value = currentPosition.longitude;
+          if (x == 0) {
+            BitmapDescriptor.fromAssetImage(
+                    ImageConfiguration(devicePixelRatio: 2.5),
+                    'assets/detective.png')
+                .then((pin) {
+              _markers.add(
+                Marker(
+                    markerId: MarkerId(
+                      "start",
+                    ),
+                    position: LatLng(lat.value, long.value),
+                    consumeTapEvents: true,
+                    infoWindow: InfoWindow(
+                        title:
+                            "${LatLng(lat.value, long.value).latitude}°N,  ${LatLng(lat.value, long.value).longitude}°E"),
+                    icon: pin),
+              );
+            });
 
-          print("Latit" + currentPosition.latitude.toString());
+            x++;
+          }
         }
         await Future.delayed(Duration(seconds: 30));
       }
@@ -1943,9 +1958,7 @@ class GameMap extends StatefulWidget {
 class _GameMapState extends State<GameMap> {
   BitmapDescriptor pinLocationIcon;
   Completer<GoogleMapController> mapController = Completer();
-  List _markers = [];
-  final LatLng initialPosition = const LatLng(39.8283, -98.5795);
-  LatLng currentPosition = const LatLng(39.8283, -98.5795);
+  final LatLng initialPosition = const LatLng(28.8283, 87.5795);
 
   void updateCorrectLocationsMarkers() {
     print("UPDATE");
@@ -1966,23 +1979,6 @@ class _GameMapState extends State<GameMap> {
 
   void initState() {
     updateCorrectLocationsMarkers();
-    BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(devicePixelRatio: 2.5), 'assets/detective.png')
-        .then((pin) {
-      pinLocationIcon = pin;
-      _markers.add(
-        Marker(
-            markerId: MarkerId(
-              "start",
-            ),
-            position: initialPosition,
-            consumeTapEvents: true,
-            infoWindow: InfoWindow(
-                title:
-                    "${initialPosition.latitude}°N,  ${initialPosition.longitude}°E"),
-            icon: pin),
-      );
-    });
     updateMap.addListener(listenerFunction);
     super.initState();
   }
@@ -1992,7 +1988,7 @@ class _GameMapState extends State<GameMap> {
     if (updateMap.value) {
       print("Listener true");
       (await mapController.future).animateCamera(CameraUpdate.newCameraPosition(
-          CameraPosition(target: initialPosition, zoom: 3.45)));
+          CameraPosition(target: initialPosition, zoom: mapZoom)));
       updateMap.value = false;
       setState(() {});
     }
@@ -2009,19 +2005,13 @@ class _GameMapState extends State<GameMap> {
           myLocationButtonEnabled: true,
           initialCameraPosition: CameraPosition(
             target: initialPosition,
-            zoom: 3.5,
+            zoom: mapZoom,
           ),
           markers: Set.from(_markers),
           onMapCreated: _onMapCreated,
           myLocationEnabled: false,
           compassEnabled: false,
-          zoomControlsEnabled: false,
-          onCameraMove: (position) {
-            setState(() {
-              currentPosition = position.target;
-              _handleTap(position.target);
-            });
-          },
+          zoomControlsEnabled: true,
         ),
         AnimatedPositioned(
           duration: Duration(milliseconds: 500),
@@ -2061,7 +2051,8 @@ class _GameMapState extends State<GameMap> {
             onTap: () async {
               (await mapController.future).animateCamera(
                 CameraUpdate.newCameraPosition(
-                  CameraPosition(target: initialPosition, zoom: 3.5),
+                  CameraPosition(
+                      target: LatLng(lat.value, long.value), zoom: mapZoom),
                 ),
               );
             },
@@ -2095,24 +2086,6 @@ class _GameMapState extends State<GameMap> {
     setState(() {
       _setStyle(controller);
       mapController.complete(controller);
-    });
-  }
-
-  void _handleTap(LatLng point) {
-    if (_markers.isNotEmpty) _markers = [];
-    updateCorrectLocationsMarkers();
-    setState(() {
-      lat.value = point.latitude;
-      long.value = point.longitude;
-      _markers.add(
-        Marker(
-            markerId: MarkerId(
-              point.toString(),
-            ),
-            position: point,
-            icon: pinLocationIcon),
-      );
-      currentPosition = point;
     });
   }
 }

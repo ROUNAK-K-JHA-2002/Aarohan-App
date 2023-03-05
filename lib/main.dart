@@ -11,6 +11,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'screens/home_page.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:aarohan_app/screens/event_screen.dart';
 import 'package:aarohan_app/models/schedule.dart';
 import 'package:aarohan_app/screens/timeline.dart';
@@ -48,6 +49,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await FlutterConfig.loadEnvVariables();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp();
 
